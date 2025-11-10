@@ -8,13 +8,18 @@ const BillDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const cartData = useSelector((state) => state.orderDB);
+
   useEffect(() => {
-    dispatch(getOrderDeatilsDB(id));
-  }, [dispatch]);
+    if (id) {
+      dispatch(getOrderDeatilsDB(id));
+    }
+  }, [dispatch, id]); // ✅ include 'id' in dependencies
 
   const calculateTotal = () => {
     if (cartData.data?.itemData1) {
-      return cartData.data?.itemData1.reduce((acc, item) => acc + parseFloat(item.subtotal), 0).toFixed(2);
+      return cartData.data.itemData1
+        .reduce((acc, item) => acc + parseFloat(item.subtotal), 0)
+        .toFixed(2);
     } else {
       return 0;
     }
@@ -30,7 +35,7 @@ const BillDetails = () => {
                 <div className="col-sm-6 col-md-6">
                   <div className="receipt-left">
                     <p>
-                      <strong> Customer Name :</strong> {cartData.data?.customerData?.name}
+                      <strong>Customer Name :</strong> {cartData.data?.customerData?.name}
                     </p>
                     <p>
                       <strong>Mobile :</strong> {cartData.data?.customerData?.mobile}
@@ -45,7 +50,7 @@ const BillDetails = () => {
                 </div>
                 <div className="col-sm-6 col-md-6 text-right">
                   <div className="receipt-right">
-                    <h5>Dr Pathaks Holistic Cure </h5>
+                    <h5>Dr Pathaks Holistic Cure</h5>
                     <p>Khajuraho/Bhopal MP</p>
                     <p>India</p>
                   </div>
@@ -59,7 +64,7 @@ const BillDetails = () => {
                   </div>
                   <div className="col-xs-4 col-sm-12 col-md-12">
                     <div className="receipt-left">
-                      <h5> Invoice ID # {cartData.data?.order?.order_id}</h5>
+                      <h5>Invoice ID # {cartData.data?.order?.order_id}</h5>
                     </div>
                   </div>
                 </div>
@@ -77,7 +82,7 @@ const BillDetails = () => {
                   </thead>
                   <tbody>
                     {cartData.data?.itemData1
-                      ? cartData.data?.itemData1.map((item, key) => (
+                      ? cartData.data.itemData1.map((item, key) => (
                           <tr key={key}>
                             <td className="col-md-4">{item.product.name}</td>
                             <td className="col-md-3">{item.quantity}</td>
@@ -87,8 +92,7 @@ const BillDetails = () => {
                             </td>
                           </tr>
                         ))
-                      : ''}
-                    <tr></tr>
+                      : null}
                     <tr>
                       <td className="text-right" colSpan={3}>
                         <h5>
