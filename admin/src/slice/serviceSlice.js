@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   data: [],
   loading: false,
-  error: null,
+  error: null
 };
 
 export const serviceSlice = createSlice({
@@ -27,18 +27,10 @@ export const serviceSlice = createSlice({
     failedService: (state, action) => {
       state.loading = false;
       state.error = action.payload;
-    },
-  },
+    }
+  }
 });
 
-export const {
-  addService,
-  getService,
-  getOneService,
-  updateService,
-  removeService,
-  successService,
-  failedService
-} = serviceSlice.actions;
+export const { addService, getService, getOneService, updateService, removeService, successService, failedService } = serviceSlice.actions;
 
 export default serviceSlice.reducer;

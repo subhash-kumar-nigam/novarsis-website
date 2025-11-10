@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  data: [],       // list of fee structures
+  data: [], // list of fee structures
   loading: false,
-  error: null,
+  error: null
 };
 
 const feeStructureSlice = createSlice({
@@ -28,8 +28,8 @@ const feeStructureSlice = createSlice({
     },
     setLoading: (state, action) => {
       state.loading = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export const {
@@ -40,7 +40,7 @@ export const {
   removeFeeStructure,
   successFeeStructure,
   failedFeeStructure,
-  setLoading,
+  setLoading
 } = feeStructureSlice.actions;
 
 export default feeStructureSlice.reducer;

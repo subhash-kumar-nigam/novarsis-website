@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getBlog, removeBlog, updateBlog } from "slice/blogSlice";
-import AdminTable from "common/AdminTable";
-import { toast } from "react-toastify";
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getBlog, removeBlog, updateBlog } from 'slice/blogSlice';
+import AdminTable from 'common/AdminTable';
+import { toast } from 'react-toastify';
 
 const ListBlog = () => {
   const dispatch = useDispatch();
@@ -11,16 +11,16 @@ const ListBlog = () => {
   const blogState = useSelector((state) => state.blog) || {
     data: [],
     loading: false,
-    error: null,
+    error: null
   };
   const { data = [], loading, error } = blogState;
 
   const [selectedBlog, setSelectedBlog] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    date: "",
+    title: '',
+    description: '',
+    date: ''
   });
 
   // ✅ Fetch Blogs on mount
@@ -32,9 +32,9 @@ const ListBlog = () => {
   const handleEditClick = (blog) => {
     setSelectedBlog(blog);
     setFormData({
-      title: blog.title || "",
-      description: blog.description || "",
-      date: blog.date || "",
+      title: blog.title || '',
+      description: blog.description || '',
+      date: blog.date || ''
     });
     setShowModal(true);
   };
@@ -43,7 +43,7 @@ const ListBlog = () => {
   const closeModal = () => {
     setShowModal(false);
     setSelectedBlog(null);
-    setFormData({ title: "", description: "", date: "" });
+    setFormData({ title: '', description: '', date: '' });
   };
 
   // ✅ Form change
@@ -51,7 +51,7 @@ const ListBlog = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: value
     }));
   };
 
@@ -60,11 +60,11 @@ const ListBlog = () => {
     if (!selectedBlog) return;
     try {
       await dispatch(updateBlog({ id: selectedBlog.id, data: formData }));
-      toast.success("Blog updated successfully!");
+      toast.success('Blog updated successfully!');
       dispatch(getBlog()); // refresh list
     } catch (err) {
-      console.error("Error updating blog:", err);
-      toast.error("Failed to update blog");
+      console.error('Error updating blog:', err);
+      toast.error('Failed to update blog');
     }
     closeModal();
   };
@@ -73,40 +73,34 @@ const ListBlog = () => {
   const handleRemove = async (id) => {
     try {
       await dispatch(removeBlog(id));
-      toast.success("Blog removed successfully!");
+      toast.success('Blog removed successfully!');
       dispatch(getBlog());
     } catch (err) {
-      console.error("Error removing blog:", err);
-      toast.error("Failed to remove blog");
+      console.error('Error removing blog:', err);
+      toast.error('Failed to remove blog');
     }
   };
 
   // ✅ Table columns
   const tableHeaders = [
-    { Header: "ID", accessor: "id" },
-    { Header: "Title", accessor: "title" },
-    { Header: "Description", accessor: "description" },
-    { Header: "Date", accessor: "date" },
+    { Header: 'ID', accessor: 'id' },
+    { Header: 'Title', accessor: 'title' },
+    { Header: 'Description', accessor: 'description' },
+    { Header: 'Date', accessor: 'date' },
     {
-      Header: "Actions",
-      accessor: "actions",
+      Header: 'Actions',
+      accessor: 'actions',
       Cell: ({ row }) => (
         <>
-          <button
-            className="btn removebtn mx-1"
-            onClick={() => handleRemove(row.original.id)}
-          >
+          <button className="btn removebtn mx-1" onClick={() => handleRemove(row.original.id)}>
             Remove
           </button>
-          <button
-            className="btn editbtn mx-1"
-            onClick={() => handleEditClick(row.original)}
-          >
+          <button className="btn editbtn mx-1" onClick={() => handleEditClick(row.original)}>
             Edit
           </button>
         </>
-      ),
-    },
+      )
+    }
   ];
 
   return (
@@ -133,12 +127,7 @@ const ListBlog = () => {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Edit Blog</h5>
-                <button
-                  type="button"
-                  className="close"
-                  onClick={closeModal}
-                  aria-label="Close"
-                >
+                <button type="button" className="close" onClick={closeModal} aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -160,28 +149,14 @@ const ListBlog = () => {
                   placeholder="Description"
                   rows={4}
                 />
-                <input
-                  type="date"
-                  name="date"
-                  value={formData.date}
-                  onChange={handleFormChange}
-                  className="form-control mb-2"
-                />
+                <input type="date" name="date" value={formData.date} onChange={handleFormChange} className="form-control mb-2" />
               </div>
 
               <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={closeModal}
-                >
+                <button type="button" className="btn btn-secondary" onClick={closeModal}>
                   Close
                 </button>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={handleSaveChanges}
-                >
+                <button type="button" className="btn btn-primary" onClick={handleSaveChanges}>
                   Save Changes
                 </button>
               </div>

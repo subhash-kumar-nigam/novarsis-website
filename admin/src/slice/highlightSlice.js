@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   data: [],
   loading: false,
-  error: null,
+  error: null
 };
 
 export const highlightSlice = createSlice({
@@ -35,18 +35,11 @@ export const highlightSlice = createSlice({
     failedHighlight: (state, action) => {
       state.loading = false;
       state.error = action.payload;
-    },
-  },
+    }
+  }
 });
 
-export const {
-  addHighlight,
-  getHighlight,
-  getOneHighlight,
-  updateHighlight,
-  removeHighlight,
-  successHighlight,
-  failedHighlight,
-} = highlightSlice.actions;
+export const { addHighlight, getHighlight, getOneHighlight, updateHighlight, removeHighlight, successHighlight, failedHighlight } =
+  highlightSlice.actions;
 
 export default highlightSlice.reducer;

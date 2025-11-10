@@ -5,86 +5,83 @@ import AdminTable from 'common/AdminTable';
 // import { IoIosEye } from "react-icons/io";
 
 const Internship = () => {
-    // const [viewData, setViewData] = useState(null);
-    // const [modalOpen, setModalOpen] = useState(false);
-    const dispatch = useDispatch();
-    const cartData = useSelector((state) => state.internship);
+  // const [viewData, setViewData] = useState(null);
+  // const [modalOpen, setModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const cartData = useSelector((state) => state.internship);
 
-    const tableHeaders = [
-        {
-            Header: 'ID',
-            accessor: 'id',
-        },
-        {
-            Header: 'Student Name',
-            accessor: 'name',
-        },
-        {
-            Header: 'Student Email',
-            accessor: 'email',
-        },
-        {
-            Header: 'standard',
-            accessor: 'standard',
-        },
-        {
-            Header: 'mobile',
-            accessor: 'mobile',
-        },
-        {
-            Header: 'board',
-            accessor: 'board',
-        },
-        {
-            Header: 'Actions',
-            accessor: 'actions',
-            Cell: ({ row }) => (
-                <button
-                    className="btn removebtn"
-                    onClick={() => dispatch(removeResume(row.original.id))}
-                >
-                    Remove
-                </button>
-            ),
-        },
-        // {
-        //     Header: 'View',
-        //     accessor: 'actions2',
-        //     Cell: ({ row }) => (
-        //         <button
-        //             className="btn btn-success"
-        //             onClick={() => {
-        //                 setViewData(row.original);
-        //                 setModalOpen(true);
-        //             }}
-        //         >
-        //             <IoIosEye />
-        //         </button>
-        //     ),
-        // }
-    ];
+  const tableHeaders = [
+    {
+      Header: 'ID',
+      accessor: 'id'
+    },
+    {
+      Header: 'Student Name',
+      accessor: 'name'
+    },
+    {
+      Header: 'Student Email',
+      accessor: 'email'
+    },
+    {
+      Header: 'standard',
+      accessor: 'standard'
+    },
+    {
+      Header: 'mobile',
+      accessor: 'mobile'
+    },
+    {
+      Header: 'board',
+      accessor: 'board'
+    },
+    {
+      Header: 'Actions',
+      accessor: 'actions',
+      Cell: ({ row }) => (
+        <button className="btn removebtn" onClick={() => dispatch(removeResume(row.original.id))}>
+          Remove
+        </button>
+      )
+    }
+    // {
+    //     Header: 'View',
+    //     accessor: 'actions2',
+    //     Cell: ({ row }) => (
+    //         <button
+    //             className="btn btn-success"
+    //             onClick={() => {
+    //                 setViewData(row.original);
+    //                 setModalOpen(true);
+    //             }}
+    //         >
+    //             <IoIosEye />
+    //         </button>
+    //     ),
+    // }
+  ];
 
-    useEffect(() => {
-        dispatch(getResume());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(getResume());
+  }, [dispatch]);
 
-    return (
-        <>
-            <div className="container-fluid mt-5 pb-5">
-                <div className="mainheadig mx-3">
-                    <h4 className="text-white font-weight-bold">Admission List</h4>
-                </div>
+  return (
+    <>
+      <div className="container-fluid mt-5 pb-5">
+        <div className="mainheadig mx-3">
+          <h4 className="text-white font-weight-bold">Admission List</h4>
+        </div>
 
-                {cartData?.loading ? (
-                    <p className="text-white mx-3">Loading...</p>
-                ) : cartData?.data?.length > 0 ? (
-                    <AdminTable tableHeaders={tableHeaders} tableData={cartData.data} />
-                ) : (
-                    <p className="text-white mx-3">No Admission found.</p>
-                )}
-            </div>
+        {cartData?.loading ? (
+          <p className="text-white mx-3">Loading...</p>
+        ) : cartData?.data?.length > 0 ? (
+          <AdminTable tableHeaders={tableHeaders} tableData={cartData.data} />
+        ) : (
+          <p className="text-white mx-3">No Admission found.</p>
+        )}
+      </div>
 
-            {/* Modal - View Resume 
+      {/* Modal - View Resume 
             {modalOpen && (
                 <div className="custom-modal-backdrop">
                     <div className="custom-modal">
@@ -112,8 +109,8 @@ const Internship = () => {
                     </div>
                 </div>
             )}*/}
-        </>
-    );
+    </>
+  );
 };
 
 export default Internship;

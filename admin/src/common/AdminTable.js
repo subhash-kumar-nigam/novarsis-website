@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  useTable,
-  useGlobalFilter,
-  useSortBy,
-  usePagination,
-} from 'react-table';
+import { useTable, useGlobalFilter, useSortBy, usePagination } from 'react-table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function GlobalFilter({ preGlobalFilteredRows, globalFilter, setGlobalFilter }) {
@@ -16,7 +11,7 @@ function GlobalFilter({ preGlobalFilteredRows, globalFilter, setGlobalFilter }) 
         type="text"
         className="form-control"
         value={globalFilter || ''}
-        onChange={e => setGlobalFilter(e.target.value || undefined)}
+        onChange={(e) => setGlobalFilter(e.target.value || undefined)}
         placeholder={`Search ${count} records...`}
       />
     </div>
@@ -24,21 +19,15 @@ function GlobalFilter({ preGlobalFilteredRows, globalFilter, setGlobalFilter }) 
 }
 
 const AdminTable = ({ tableHeaders = [], tableData = [] }) => {
-  const data = React.useMemo(
-    () => (tableData.length ? tableData : []),
-    [tableData] 
-  );
+  const data = React.useMemo(() => (tableData.length ? tableData : []), [tableData]);
 
-  const columns = React.useMemo(
-    () => (tableHeaders.length ? tableHeaders : []),
-    [tableHeaders] 
-  );
+  const columns = React.useMemo(() => (tableHeaders.length ? tableHeaders : []), [tableHeaders]);
 
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    
+
     prepareRow,
     state,
     preGlobalFilteredRows,
@@ -49,7 +38,7 @@ const AdminTable = ({ tableHeaders = [], tableData = [] }) => {
     pageOptions,
     nextPage,
     previousPage,
-    setPageSize,
+    setPageSize
   } = useTable(
     { columns, data, initialState: { pageSize: 6 } },
     useGlobalFilter, // Use global filter
@@ -60,12 +49,8 @@ const AdminTable = ({ tableHeaders = [], tableData = [] }) => {
   return (
     <div className="container-fluid mt-5 pl-4 pr-4">
       {/* Search Input */}
-   
-      <GlobalFilter
-        preGlobalFilteredRows={preGlobalFilteredRows}
-        globalFilter={state.globalFilter}
-        setGlobalFilter={setGlobalFilter}
-      />
+
+      <GlobalFilter preGlobalFilteredRows={preGlobalFilteredRows} globalFilter={state.globalFilter} setGlobalFilter={setGlobalFilter} />
 
       {/* Table */}
       <div className="table-responsive ">
@@ -74,19 +59,9 @@ const AdminTable = ({ tableHeaders = [], tableData = [] }) => {
             {headerGroups.map((headerGroup, index) => (
               <tr {...headerGroup.getHeaderGroupProps()} key={index}>
                 {headerGroup.headers.map((column, colIndex) => (
-                  <th
-                    {...column.getHeaderProps(column.getSortByToggleProps())}
-                    key={colIndex}
-                    className="text-center"
-                  >
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())} key={colIndex} className="text-center">
                     {column.render('Header')}
-                    <span>
-                      {column.isSorted
-                        ? column.isSortedDesc
-                          ? ' 🔽'
-                          : ' 🔼'
-                        : ''}
-                    </span>
+                    <span>{column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}</span>
                   </th>
                 ))}
               </tr>
@@ -98,11 +73,7 @@ const AdminTable = ({ tableHeaders = [], tableData = [] }) => {
               return (
                 <tr {...row.getRowProps()} key={i}>
                   {row.cells.map((cell, cellIndex) => (
-                    <td
-                      {...cell.getCellProps()}
-                      key={cellIndex}
-                      className="text-center"
-                    >
+                    <td {...cell.getCellProps()} key={cellIndex} className="text-center">
                       {cell.render('Cell')}
                     </td>
                   ))}
@@ -116,18 +87,10 @@ const AdminTable = ({ tableHeaders = [], tableData = [] }) => {
       {/* Pagination Controls */}
       <div className="d-flex justify-content-between align-items-center mt-3">
         <div>
-          <button
-            className="btn-lg border-0 previousbtn"
-            onClick={() => previousPage()}
-            disabled={!canPreviousPage}
-          >
+          <button className="btn-lg border-0 previousbtn" onClick={() => previousPage()} disabled={!canPreviousPage}>
             Previous
           </button>
-          <button
-            className="btn-lg border-0 nextbtn ml-2"
-            onClick={() => nextPage()}
-            disabled={!canNextPage}
-          >
+          <button className="btn-lg border-0 nextbtn ml-2" onClick={() => nextPage()} disabled={!canNextPage}>
             Next
           </button>
         </div>
@@ -141,10 +104,10 @@ const AdminTable = ({ tableHeaders = [], tableData = [] }) => {
           <select
             className="form-control previousbtn"
             value={state.pageSize}
-            onChange={e => setPageSize(Number(e.target.value))}
+            onChange={(e) => setPageSize(Number(e.target.value))}
             style={{ width: '100px' }}
           >
-            {[5, 10, 20].map(pageSize => (
+            {[5, 10, 20].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
                 Show {pageSize}
               </option>

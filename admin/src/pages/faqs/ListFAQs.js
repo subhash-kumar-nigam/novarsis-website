@@ -12,7 +12,7 @@ const ListFAQs = () => {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     question: '',
-    answer: '',
+    answer: ''
   });
 
   // Fetch FAQs list
@@ -25,7 +25,7 @@ const ListFAQs = () => {
     setSelectedFaq(faq);
     setFormData({
       question: faq.question,
-      answer: faq.answer,
+      answer: faq.answer
     });
     setShowModal(true);
   };
@@ -40,7 +40,7 @@ const ListFAQs = () => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: value
     }));
   };
 
@@ -62,36 +62,30 @@ const ListFAQs = () => {
   const tableHeaders = [
     {
       Header: 'ID',
-      accessor: 'id',
+      accessor: 'id'
     },
     {
       Header: 'Question',
-      accessor: 'question',
+      accessor: 'question'
     },
     {
       Header: 'Answer',
-      accessor: 'answer',
+      accessor: 'answer'
     },
     {
       Header: 'Actions',
       accessor: 'actions',
       Cell: ({ row }) => (
         <>
-          <button
-            className="btn removebtn mx-1"
-            onClick={() => dispatch(removeFaq(row.original.id))}
-          >
+          <button className="btn removebtn mx-1" onClick={() => dispatch(removeFaq(row.original.id))}>
             Remove
           </button>
-          <button
-            className="btn editbtn mx-1"
-            onClick={() => handleEditClick(row.original)}
-          >
+          <button className="btn editbtn mx-1" onClick={() => handleEditClick(row.original)}>
             Edit
           </button>
         </>
-      ),
-    },
+      )
+    }
   ];
 
   return (
@@ -101,32 +95,19 @@ const ListFAQs = () => {
           <h4 className="text-white font-weight-bold">FAQs List</h4>
         </div>
 
-        {faqData?.data?.length > 0 && (
-          <AdminTable tableHeaders={tableHeaders} tableData={faqData.data} />
-        )}
+        {faqData?.data?.length > 0 && <AdminTable tableHeaders={tableHeaders} tableData={faqData.data} />}
       </div>
 
       {/* Edit Modal */}
       {showModal && selectedFaq && (
-        <div
-          className="modal fade show d-block"
-          tabIndex="-1"
-          role="dialog"
-          aria-labelledby="editFaqModal"
-          aria-hidden="true"
-        >
+        <div className="modal fade show d-block" tabIndex="-1" role="dialog" aria-labelledby="editFaqModal" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="editFaqModal">
                   Edit FAQ
                 </h5>
-                <button
-                  type="button"
-                  className="close"
-                  onClick={closeModal}
-                  aria-label="Close"
-                >
+                <button type="button" className="close" onClick={closeModal} aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>

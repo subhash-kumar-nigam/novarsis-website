@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addFaq } from "../../slice/faqSlice"; // ✅ faq slice
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFaq } from '../../slice/faqSlice'; // ✅ faq slice
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const AddFaq = () => {
   const [formData, setFormData] = useState({
-    question: "",
-    answer: "",
+    question: '',
+    answer: ''
   });
 
   const dispatch = useDispatch();
@@ -22,19 +22,21 @@ const AddFaq = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addFaq(formData));
-    toast.success("FAQ added successfully!");
-    navigate("/faqs/list"); // ✅ list page pe redirect
+    toast.success('FAQ added successfully!');
+    navigate('/faqs/list'); // ✅ list page pe redirect
   };
 
   return (
     <div className="container-fluid mt-5">
-      <div className='mainheadig mx-4'>
-                <h4 className='text-white font-weight-bold'>Add FAQS</h4>
-            </div>
+      <div className="mainheadig mx-4">
+        <h4 className="text-white font-weight-bold">Add FAQS</h4>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="row mx-4">
           <div className="col-sm-12 mt-3">
-            <label htmlFor="question" className="adminlables">Question</label>
+            <label htmlFor="question" className="adminlables">
+              Question
+            </label>
             <input
               type="text"
               id="question"
@@ -47,7 +49,9 @@ const AddFaq = () => {
           </div>
 
           <div className="col-sm-12 mt-3">
-            <label htmlFor="answer" className="adminlables">Answer</label>
+            <label htmlFor="answer" className="adminlables">
+              Answer
+            </label>
             <textarea
               id="answer"
               name="answer"

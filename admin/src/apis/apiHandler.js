@@ -5,79 +5,71 @@ import { toast } from 'react-toastify';
 import { getContactUs, successContactUs, failedContactUs, removeContactUs, getDashboardData } from '../slice/contactUsSlice';
 import { getResume, removeResume, getDashboardDataa, successResume } from '../slice/internshipSlice';
 import { getEnquire, successEnquire, failedEnquire, removeEnquire } from '../slice/enquireSlice';
-import { addProduct, getProduct, updateProduct, successProduct, removeProduct, getOneProduct, searchProductByName } from '../slice/productSlice';
+import {
+  addProduct,
+  getProduct,
+  updateProduct,
+  successProduct,
+  removeProduct,
+  getOneProduct,
+  searchProductByName
+} from '../slice/productSlice';
 import { getGallery, successGallery, removeGallery, addGallery, updateGallery, getOneGallery } from '../slice/gallerySlice';
 import { getMedia, successMedia, removeMedia, addMedia, updateMedia, getOneMedia } from '../slice/mediaSlice';
 import { getBanner, successBanner, removeBanner, addBanner, updateBanner, getOneBanner } from '../slice/bannerSlice';
 
 import { getOurteam, successOurteam, removeOurteam, addOurteam, updateOurteam, getOneOurteam, failedOurteam } from 'slice/ourteamSlice';
-import { getCustomer, successCustomer, removeCustomer, addCustomer, updateCustomer, getOneCustomer, searchByMobile } from '../slice/customerSlice';
-import { addOrderListDB, getOrderListDB, getOrderDeatilsDB, successOrderListDB, failedOrderListDB, updateOrderListDB } from '../slice/orderSliceDB';
+import {
+  getCustomer,
+  successCustomer,
+  removeCustomer,
+  addCustomer,
+  updateCustomer,
+  getOneCustomer,
+  searchByMobile
+} from '../slice/customerSlice';
+import {
+  addOrderListDB,
+  getOrderListDB,
+  getOrderDeatilsDB,
+  successOrderListDB,
+  failedOrderListDB,
+  updateOrderListDB
+} from '../slice/orderSliceDB';
 
-import { getAdmissions, removeAdmission, successAdmission, failedAdmission, } from '../slice/admissionSlice';
+import { getAdmissions, removeAdmission, successAdmission, failedAdmission } from '../slice/admissionSlice';
 import { getEvent, getOneEvent, addEvent, updateEvent, removeEvent, successEvent, failedEvent } from '../slice/eventSlice';
-import { getManagement, getOneManagement, addManagement, updateManagement, removeManagement, successManagement, failedManagement } from '../slice/managementSlice';
 import {
-  getApplyForm,
-  removeApplyForm,
-  successApplyForm,
-  failedApplyForm,
-} from "../slice/applyFormSlice";
-import {
-  getBlog,
-  getOneBlog,
-  addBlog,
-  updateBlog,
-  removeBlog,
-  successBlog,
-  failedBlog,
-} from '../slice/blogSlice';
-import {
-  getCareer,
-  getOneCareer,
-  addCareer,
-  updateCareer,
-  removeCareer,
-  successCareer,
-  failedCareer,
-} from "../slice/careerSlice";
+  getManagement,
+  getOneManagement,
+  addManagement,
+  updateManagement,
+  removeManagement,
+  successManagement,
+  failedManagement
+} from '../slice/managementSlice';
+import { getApplyForm, removeApplyForm, successApplyForm, failedApplyForm } from '../slice/applyFormSlice';
+import { getBlog, getOneBlog, addBlog, updateBlog, removeBlog, successBlog, failedBlog } from '../slice/blogSlice';
+import { getCareer, getOneCareer, addCareer, updateCareer, removeCareer, successCareer, failedCareer } from '../slice/careerSlice';
 
-import {
-  getService,
-  getOneService,
-  addService,
-  updateService,
-  removeService,
-  successService,
-  failedService,
-} from "../slice/serviceSlice";
+import { getService, getOneService, addService, updateService, removeService, successService, failedService } from '../slice/serviceSlice';
 
-import {
-  addFaq,
-  getFaqs,
-  getOneFaq,
-  updateFaq,
-  removeFaq,
-  successFaq,
-  failedFaq,
-} from '../slice/faqSlice';
-
+import { addFaq, getFaqs, getOneFaq, updateFaq, removeFaq, successFaq, failedFaq } from '../slice/faqSlice';
 
 import { updateOrderAPI } from './orderAPI/orderAPI';
-
 
 // Generator function
 function* signinUser({ payload }) {
   try {
     // You can also export the axios call as a function.
-    console.log('ddddddddddddddddddddddddd111111111111')
+    console.log('ddddddddddddddddddddddddd111111111111');
     let response = yield postRequest('admin/signin', payload, {
-      withCredentials: true, // Include cookies in the request
+      withCredentials: true // Include cookies in the request
     });
     if (response == undefined) {
       response = {
         message: 'something wrong try after sometime'
-      }
+      };
     }
     if (response?.status == 200) {
       yield put(success(response));
@@ -98,15 +90,15 @@ function* signupUser({ payload }) {
       yield put(failed(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
 //apply start
 function* getApplyFormFun({ payload }) {
   try {
-    const response = yield getRequest("apply", payload);
+    const response = yield getRequest('apply', payload);
     if (response?.status === 200) {
       // ✅ Correct: extract actual data array
       yield put(successApplyForm(response.data.data));
@@ -115,7 +107,7 @@ function* getApplyFormFun({ payload }) {
     }
   } catch (error) {
     console.error(error);
-    toast("Something went wrong while fetching apply forms");
+    toast('Something went wrong while fetching apply forms');
   }
 }
 
@@ -124,36 +116,35 @@ function* removeApplyFormFun({ payload }) {
   try {
     const response = yield deleteRequest(`apply/${payload}`);
     if (response?.status === 200) {
-      const newList = yield getRequest("apply");
+      const newList = yield getRequest('apply');
       // ✅ Fix here too
       yield put(successApplyForm(newList.data.data));
-      toast("Apply form removed successfully");
+      toast('Apply form removed successfully');
     } else {
       yield put(failedApplyForm(response));
     }
   } catch (error) {
     console.error(error);
-    toast("Something went wrong while deleting apply form");
+    toast('Something went wrong while deleting apply form');
   }
 }
-
 
 //apply end
 
 export function* getServiceFun() {
   try {
-    const response = yield getRequest("service");
-    console.log("SERVICE API RESPONSE:", response);
+    const response = yield getRequest('service');
+    console.log('SERVICE API RESPONSE:', response);
 
     if (response?.status === 200 && response?.data?.success) {
       yield put(successService(response.data.data));
     } else {
-      yield put(failedService(response?.data?.message || "Failed to fetch services"));
+      yield put(failedService(response?.data?.message || 'Failed to fetch services'));
     }
   } catch (error) {
-    console.error("SERVICE FETCH ERROR:", error);
-    yield put(failedService(error?.message || "Something went wrong"));
-    toast.error("Failed to fetch services");
+    console.error('SERVICE FETCH ERROR:', error);
+    yield put(failedService(error?.message || 'Something went wrong'));
+    toast.error('Failed to fetch services');
   }
 }
 
@@ -168,30 +159,30 @@ export function* getOneServiceFun({ payload }) {
     }
   } catch (error) {
     console.log(error);
-    toast.error(error?.message || "Failed to fetch service details");
+    toast.error(error?.message || 'Failed to fetch service details');
   }
 }
 
 export function* addServiceFun({ payload }) {
   try {
-    const response = yield postRequest("service", payload);
+    const response = yield postRequest('service', payload);
 
     if (response?.status === 200) {
       // ✅ dispatch only the useful data
       yield put(successService(response?.data));
-      toast.success("Service added successfully!");
+      toast.success('Service added successfully!');
 
       // Optionally refresh list
       yield put(getService());
     } else {
       // ❌ don’t send whole object
-      yield put(failedService(response?.message || "Failed to add service"));
-      toast.error(response?.message || "Failed to add service");
+      yield put(failedService(response?.message || 'Failed to add service'));
+      toast.error(response?.message || 'Failed to add service');
     }
   } catch (error) {
-    console.error("Add service error:", error);
-    yield put(failedService(error?.message || "Something went wrong"));
-    toast.error(error?.message || "Failed to add service");
+    console.error('Add service error:', error);
+    yield put(failedService(error?.message || 'Something went wrong'));
+    toast.error(error?.message || 'Failed to add service');
   }
 }
 
@@ -201,13 +192,13 @@ export function* updateServiceFun({ payload }) {
     const response = yield patchRequest(`service/${payload.id}`, payload.data);
     if (response?.status === 200) {
       yield put(successService(response?.data));
-      toast.success("Service updated successfully!");
+      toast.success('Service updated successfully!');
     } else {
       yield put(failedService(response));
     }
   } catch (error) {
     console.log(error);
-    toast.error(error?.message || "Failed to update service");
+    toast.error(error?.message || 'Failed to update service');
   }
 }
 
@@ -216,15 +207,15 @@ export function* removeServiceFun({ payload }) {
   try {
     const response = yield deleteRequest(`service/${payload}`);
     if (response?.status === 200) {
-      const res = yield getRequest("service");
+      const res = yield getRequest('service');
       yield put(successService(res?.data?.data || []));
-      toast.success("Service deleted successfully!");
+      toast.success('Service deleted successfully!');
     } else {
       yield put(failedService(response));
     }
   } catch (error) {
     console.log(error);
-    toast.error(error?.message || "Failed to delete service");
+    toast.error(error?.message || 'Failed to delete service');
   }
 }
 
@@ -261,23 +252,23 @@ function* removeAdmissionFun({ payload }) {
   }
 }
 
-// admissioin end 
+// admissioin end
 
 //carrier
 export function* getCareerFun() {
   try {
-    const response = yield getRequest("career");
-    console.log("CAREER API RESPONSE:", response);
+    const response = yield getRequest('career');
+    console.log('CAREER API RESPONSE:', response);
 
     if (response?.status === 200 && response?.data?.success) {
       yield put(successCareer(response.data.data));
     } else {
-      yield put(failedCareer(response?.data?.message || "Failed to fetch careers"));
+      yield put(failedCareer(response?.data?.message || 'Failed to fetch careers'));
     }
   } catch (error) {
-    console.error("CAREER FETCH ERROR:", error);
-    yield put(failedCareer(error?.message || "Something went wrong"));
-    toast.error("Failed to fetch careers");
+    console.error('CAREER FETCH ERROR:', error);
+    yield put(failedCareer(error?.message || 'Something went wrong'));
+    toast.error('Failed to fetch careers');
   }
 }
 
@@ -292,31 +283,31 @@ export function* getOneCareerFun({ payload }) {
     }
   } catch (error) {
     console.log(error);
-    toast.error(error?.message || "Failed to fetch career details");
+    toast.error(error?.message || 'Failed to fetch career details');
   }
 }
 
 // ✅ Add career
 export function* addCareerFun({ payload }) {
   try {
-    const response = yield postRequest("career", payload);
+    const response = yield postRequest('career', payload);
 
     if (response?.status === 200) {
       // ✅ only send clean data
       yield put(successCareer(response?.data));
-      toast.success("Career added successfully!");
+      toast.success('Career added successfully!');
 
       // Optional: refresh career list
       yield put(getCareer());
     } else {
       // ❌ don’t send full axios response object
-      yield put(failedCareer(response?.message || "Failed to add career"));
-      toast.error(response?.message || "Failed to add career");
+      yield put(failedCareer(response?.message || 'Failed to add career'));
+      toast.error(response?.message || 'Failed to add career');
     }
   } catch (error) {
-    console.error("Add career error:", error);
-    yield put(failedCareer(error?.message || "Something went wrong"));
-    toast.error(error?.message || "Failed to add career");
+    console.error('Add career error:', error);
+    yield put(failedCareer(error?.message || 'Something went wrong'));
+    toast.error(error?.message || 'Failed to add career');
   }
 }
 
@@ -326,13 +317,13 @@ export function* updateCareerFun({ payload }) {
     const response = yield patchRequest(`career/${payload.id}`, payload.data);
     if (response?.status === 200) {
       yield put(successCareer(response?.data));
-      toast.success("Career updated successfully!");
+      toast.success('Career updated successfully!');
     } else {
       yield put(failedCareer(response));
     }
   } catch (error) {
     console.log(error);
-    toast.error(error?.message || "Failed to update career");
+    toast.error(error?.message || 'Failed to update career');
   }
 }
 
@@ -341,15 +332,15 @@ export function* removeCareerFun({ payload }) {
   try {
     const response = yield deleteRequest(`career/${payload}`);
     if (response?.status === 200) {
-      const res = yield getRequest("career"); // Refresh list
+      const res = yield getRequest('career'); // Refresh list
       yield put(successCareer(res?.data?.data || []));
-      toast.success("Career deleted successfully!");
+      toast.success('Career deleted successfully!');
     } else {
       yield put(failedCareer(response));
     }
   } catch (error) {
     console.log(error);
-    toast.error(error?.message || "Failed to delete career");
+    toast.error(error?.message || 'Failed to delete career');
   }
 }
 
@@ -363,10 +354,9 @@ function* getContactUsFun({ payload }) {
     }
   } catch (error) {
     console.log(error);
-    toast(error?.message || "Something went wrong");
+    toast(error?.message || 'Something went wrong');
   }
 }
-
 
 function* getDashboardDataFun({ payload }) {
   try {
@@ -377,11 +367,10 @@ function* getDashboardDataFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
-
 
 function* getProductFun() {
   try {
@@ -392,8 +381,8 @@ function* getProductFun() {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -406,8 +395,8 @@ function* getOneProductFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -421,8 +410,8 @@ function* removeContactUsFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -436,8 +425,8 @@ function* removeProductFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -450,8 +439,8 @@ function* addProductFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -464,8 +453,8 @@ function* searchProductByNameFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -478,12 +467,12 @@ function* updateProductFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
-//Gallery Functions 
+//Gallery Functions
 function* getGalleryFun() {
   try {
     const response = yield getRequest('gallery');
@@ -493,8 +482,8 @@ function* getGalleryFun() {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -507,8 +496,8 @@ function* getOneGalleryFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -522,31 +511,29 @@ function* removeGalleryFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
 export function* addGalleryFun({ payload }) {
   try {
-    const headers = { "Content-Type": "multipart/form-data" }; // ✅ important if image upload
-    const response = yield postRequest("gallery", payload, headers);
+    const headers = { 'Content-Type': 'multipart/form-data' }; // ✅ important if image upload
+    const response = yield postRequest('gallery', payload, headers);
 
     if (response?.status === 200) {
       // ✅ Store only clean data, not full axios response
       yield put(successGallery(response?.data?.data || response?.data));
-      toast.success("Gallery added successfully!");
+      toast.success('Gallery added successfully!');
     } else {
       // ✅ Extract message safely
-      const message =
-        response?.data?.message || response?.message || "Failed to add gallery";
+      const message = response?.data?.message || response?.message || 'Failed to add gallery';
       yield put(failedGallery(message));
       toast.error(message);
     }
   } catch (error) {
-    console.error("Error adding gallery:", error);
-    const message =
-      error?.response?.data?.message || error?.message || "Something went wrong";
+    console.error('Error adding gallery:', error);
+    const message = error?.response?.data?.message || error?.message || 'Something went wrong';
     yield put(failedGallery(message));
     toast.error(message);
   }
@@ -561,11 +548,11 @@ function* updateGalleryFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
-//Media Functions 
+//Media Functions
 function* getMediaFun() {
   try {
     const response = yield getRequest('media');
@@ -575,8 +562,8 @@ function* getMediaFun() {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -589,8 +576,8 @@ function* getOneMediaFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -604,8 +591,8 @@ function* removeMediaFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -618,8 +605,8 @@ function* addMediaFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -632,8 +619,8 @@ function* updateMediaFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 // Enquire
@@ -646,8 +633,8 @@ function* getEnquireFun({ payload }) {
       yield put(failedEnquire(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -661,12 +648,10 @@ function* removeEnquireFun({ payload }) {
       yield put(failedEnquire(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
-
-
 
 //managemnt start
 function* getManagementFun() {
@@ -749,28 +734,10 @@ function* updateManagementFun({ payload }) {
 }
 //management end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ✅ Get all blogs
 function* getBlogFun() {
   try {
-    const response = yield getRequest("blog");
+    const response = yield getRequest('blog');
     if (response?.status === 200) {
       // ✅ FIX: use response.data.data
       yield put(successBlog(response.data.data));
@@ -779,7 +746,7 @@ function* getBlogFun() {
     }
   } catch (error) {
     console.log(error);
-    toast(error?.message || "Failed to fetch blogs");
+    toast(error?.message || 'Failed to fetch blogs');
   }
 }
 
@@ -794,32 +761,31 @@ function* getOneBlogFun({ payload }) {
     }
   } catch (error) {
     console.log(error);
-    toast(error?.message || "Failed to fetch blog details");
+    toast(error?.message || 'Failed to fetch blog details');
   }
 }
 
 export function* addBlogFun({ payload }) {
   try {
-    const headers = { "Content-Type": "multipart/form-data" };
-    const response = yield postRequest("blog", payload, headers);
+    const headers = { 'Content-Type': 'multipart/form-data' };
+    const response = yield postRequest('blog', payload, headers);
 
     if (response?.status === 200) {
       // ✅ Only store actual response data
       yield put(successBlog(response?.data?.data));
-      toast.success("Blog added successfully!");
+      toast.success('Blog added successfully!');
 
       // Optionally refresh blog list
       yield put(getBlogs());
     } else {
       // ❌ Never send full response object
-      const errorMessage =
-        response?.data?.message || response?.message || "Failed to add blog";
+      const errorMessage = response?.data?.message || response?.message || 'Failed to add blog';
       yield put(failedBlog(errorMessage));
       toast.error(errorMessage);
     }
   } catch (error) {
-    console.error("Add blog error:", error);
-    const message = error?.response?.data?.message || error?.message || "Failed to add blog";
+    console.error('Add blog error:', error);
+    const message = error?.response?.data?.message || error?.message || 'Failed to add blog';
     yield put(failedBlog(message));
     toast.error(message);
   }
@@ -831,18 +797,18 @@ function* updateBlogFun({ payload }) {
     const formData = new FormData();
 
     // ✅ Append all fields safely
-    if (payload?.data?.title) formData.append("title", payload.data.title);
-    if (payload?.data?.description) formData.append("description", payload.data.description);
-    if (payload?.data?.category) formData.append("category", payload.data.category);
+    if (payload?.data?.title) formData.append('title', payload.data.title);
+    if (payload?.data?.description) formData.append('description', payload.data.description);
+    if (payload?.data?.category) formData.append('category', payload.data.category);
 
     // ✅ Append image only if file selected
     if (payload?.data?.image instanceof File) {
-      formData.append("image", payload.data.image);
+      formData.append('image', payload.data.image);
     }
 
     // ✅ Axios headers
     const headers = {
-      "Content-Type": "multipart/form-data",
+      'Content-Type': 'multipart/form-data'
     };
 
     // ✅ API call — removed extra "/" in URL
@@ -851,61 +817,40 @@ function* updateBlogFun({ payload }) {
     // ✅ Handle success
     if (response?.status === 200 || response?.status === 201) {
       yield put(successBlog(response.data.data));
-      toast.success("Blog updated successfully!");
+      toast.success('Blog updated successfully!');
       yield put(getBlog()); // Refresh list after update
-    } 
+    }
     // ❌ Handle backend errors gracefully
     else {
-      const errorMessage =
-        response?.data?.message || "Failed to update blog";
+      const errorMessage = response?.data?.message || 'Failed to update blog';
       yield put(failedBlog(errorMessage));
       toast.error(errorMessage);
     }
   } catch (error) {
-    console.error("Update blog error:", error);
-    const errorMessage =
-      error?.response?.data?.message || error?.message || "Failed to update blog";
+    console.error('Update blog error:', error);
+    const errorMessage = error?.response?.data?.message || error?.message || 'Failed to update blog';
     yield put(failedBlog(errorMessage));
     toast.error(errorMessage);
   }
 }
-
-
 
 // ✅ Delete blog
 function* removeBlogFun({ payload }) {
   try {
     const response = yield deleteRequest(`blog/${payload}`);
     if (response?.status === 200) {
-      const res = yield getRequest("blog");
+      const res = yield getRequest('blog');
       // ✅ FIX: again use res.data.data
       yield put(successBlog(res.data.data));
-      toast.success("Blog deleted successfully!");
+      toast.success('Blog deleted successfully!');
     } else {
       yield put(failedBlog(response));
     }
   } catch (error) {
     console.log(error);
-    toast.error(error?.message || "Failed to delete blog");
+    toast.error(error?.message || 'Failed to delete blog');
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //Banner Start
 function* getBannerFun() {
@@ -917,8 +862,8 @@ function* getBannerFun() {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -931,8 +876,8 @@ function* getOneBannerFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -946,8 +891,8 @@ function* removeBannerFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -960,8 +905,8 @@ function* addBannerFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -974,32 +919,31 @@ function* updateBannerFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
-//Banner End 
+//Banner End
 
 export function* getFaqsFun() {
   try {
-    const response = yield getRequest("faq");
-    console.log("📘 FAQ API Response:", response);
+    const response = yield getRequest('faq');
+    console.log('📘 FAQ API Response:', response);
 
     if (response?.status === 200 && response?.data?.success) {
       // ✅ Only send FAQ array
       yield put(successFaq(response.data.data));
     } else {
-      yield put(failedFaq(response?.data?.message || "Failed to fetch FAQs"));
-      toast.error(response?.data?.message || "Failed to fetch FAQs");
+      yield put(failedFaq(response?.data?.message || 'Failed to fetch FAQs'));
+      toast.error(response?.data?.message || 'Failed to fetch FAQs');
     }
   } catch (error) {
-    console.error("❌ FAQ Fetch Error:", error);
-    yield put(failedFaq(error?.message || "Something went wrong"));
-    toast.error(error?.message || "Failed to fetch FAQs");
+    console.error('❌ FAQ Fetch Error:', error);
+    yield put(failedFaq(error?.message || 'Something went wrong'));
+    toast.error(error?.message || 'Failed to fetch FAQs');
   }
 }
-
 
 // ✅ Get single FAQ
 function* getOneFaqFun({ payload }) {
@@ -1140,27 +1084,21 @@ function* updateEventFun({ payload }) {
 
 //events end
 
-
-
-
-
-
-
 //Ourteam Start
 function* getOurteamFun() {
   try {
-    const response = yield getRequest("team");
-    console.log("OUR TEAM API RESPONSE:", response);
+    const response = yield getRequest('team');
+    console.log('OUR TEAM API RESPONSE:', response);
 
     if (response?.status === 200 && response?.data?.success) {
       yield put(successOurteam(response.data.data)); // store only the array
     } else {
-      yield put(failedOurteam(response?.data?.message || "Failed to fetch team members"));
+      yield put(failedOurteam(response?.data?.message || 'Failed to fetch team members'));
     }
   } catch (error) {
-    console.error("OUR TEAM FETCH ERROR:", error);
-    yield put(failedOurteam(error?.message || "Something went wrong"));
-    toast.error("Failed to fetch team members");
+    console.error('OUR TEAM FETCH ERROR:', error);
+    yield put(failedOurteam(error?.message || 'Something went wrong'));
+    toast.error('Failed to fetch team members');
   }
 }
 
@@ -1171,46 +1109,46 @@ function* getOneOurteamFun({ payload }) {
     if (response?.status === 200 && response?.data?.success) {
       yield put(successOurteam(response.data.data));
     } else {
-      yield put(failedOurteam(response?.data?.message || "Failed to fetch team details"));
+      yield put(failedOurteam(response?.data?.message || 'Failed to fetch team details'));
     }
   } catch (error) {
     console.log(error);
-    yield put(failedOurteam(error?.message || "Failed to fetch team details"));
+    yield put(failedOurteam(error?.message || 'Failed to fetch team details'));
   }
 }
 
 // ✅ Add team member
 function* addOurteamFun({ payload }) {
   try {
-    const response = yield postRequest("team", payload);
+    const response = yield postRequest('team', payload);
     if (response?.status === 200 && response?.data?.success) {
-      toast.success("Team member added successfully!");
-      const res = yield getRequest("team"); // refresh list
+      toast.success('Team member added successfully!');
+      const res = yield getRequest('team'); // refresh list
       yield put(successOurteam(res.data.data));
     } else {
       yield put(failedOurteam(response));
     }
   } catch (error) {
     console.log(error);
-    yield put(failedOurteam(error?.message || "Failed to add team member"));
+    yield put(failedOurteam(error?.message || 'Failed to add team member'));
   }
 }
 
 export function* updateOurteamFun({ payload }) {
   try {
-    const header = { "Content-Type": "multipart/form-data" };
+    const header = { 'Content-Type': 'multipart/form-data' };
     const response = yield patchRequest(`team/${payload.id}`, payload.data, header);
 
     if (response?.status === 200 && response?.data?.success) {
-      toast.success("Team member updated successfully!");
-      const res = yield getRequest("team");
+      toast.success('Team member updated successfully!');
+      const res = yield getRequest('team');
       yield put(successOurteam(res.data.data));
     } else {
-      yield put(failedOurteam(response?.data?.message || "Failed to update team member"));
+      yield put(failedOurteam(response?.data?.message || 'Failed to update team member'));
     }
   } catch (error) {
-    console.error("Saga error:", error);
-    yield put(failedOurteam(error.message || "Error updating team member"));
+    console.error('Saga error:', error);
+    yield put(failedOurteam(error.message || 'Error updating team member'));
   }
 }
 
@@ -1219,23 +1157,18 @@ function* removeOurteamFun({ payload }) {
   try {
     const response = yield deleteRequest(`team/${payload}`);
     if (response?.status === 200 && response?.data?.success) {
-      toast.success("Team member deleted successfully!");
-      const res = yield getRequest("team");
+      toast.success('Team member deleted successfully!');
+      const res = yield getRequest('team');
       yield put(successOurteam(res.data.data));
     } else {
       yield put(failedOurteam(response));
     }
   } catch (error) {
     console.log(error);
-    yield put(failedOurteam(error?.message || "Failed to delete team member"));
+    yield put(failedOurteam(error?.message || 'Failed to delete team member'));
   }
 }
-//Ourteam End 
-
-
-
-
-
+//Ourteam End
 
 // customer start
 function* addCustomerFun({ payload }) {
@@ -1247,11 +1180,10 @@ function* addCustomerFun({ payload }) {
       yield put(failedOurteam(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
-
 
 function* getCustomerFun() {
   try {
@@ -1262,8 +1194,8 @@ function* getCustomerFun() {
       yield put(failedOurteam(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -1277,8 +1209,8 @@ function* removeCustomerFun({ payload }) {
       yield put(failedOurteam(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -1291,8 +1223,8 @@ function* getOneCustomerFun({ payload }) {
       yield put(failedOurteam(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -1300,7 +1232,7 @@ function* updateCustomerFun({ payload }) {
   try {
     let header = {
       'Content-Type': 'multipart/form-data'
-    }
+    };
     const response = yield patchRequest(`customer/${payload.id}`, payload.data, header);
     if (response?.status == 200) {
       yield put(successCustomer(response?.data));
@@ -1308,8 +1240,8 @@ function* updateCustomerFun({ payload }) {
       yield put(failedOurteam(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -1322,8 +1254,8 @@ function* searchByMobileFun({ payload }) {
       yield put(failedContactUs(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -1339,8 +1271,8 @@ function* addOrderListDBFun({ payload }) {
       yield put(failedOrderListDB(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -1353,8 +1285,8 @@ function* getOrderListDBFun() {
       yield put(failedOrderListDB(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -1367,8 +1299,8 @@ function* getOrderDeatilsDBFun({ payload }) {
       yield put(failedOrderListDB(response));
     }
   } catch (error) {
-    console.log(error)
-    toast('resposnse.message')
+    console.log(error);
+    toast('resposnse.message');
   }
 }
 
@@ -1387,7 +1319,6 @@ function* getResumeFun({ payload }) {
     toast(error.response?.data?.message || error.message);
   }
 }
-
 
 // Fetch Dashboard Data
 function* getDashboardDataaFun({ payload }) {
@@ -1422,7 +1353,6 @@ function* removeResumeFun({ payload }) {
   }
 }
 
-
 // function* removeAppointmentFun({ payload }) {
 //   try {
 //     const deleteResponse = yield deleteRequest(`appointments/${payload}`);
@@ -1439,11 +1369,8 @@ function* removeResumeFun({ payload }) {
 //   }
 // }
 
-
-
 // appointemnt
-// order list db end 
-
+// order list db end
 
 // Generator function
 export function* watchGetUser() {
@@ -1454,13 +1381,11 @@ export function* watchGetUser() {
   yield takeLatest(getContactUs, getContactUsFun);
   yield takeLatest(getDashboardData, getDashboardDataFun);
   yield takeLatest(removeContactUs, removeContactUsFun);
- 
 
-   //contact 
-     yield takeLatest(getApplyForm, getApplyFormFun);
+  //contact
+  yield takeLatest(getApplyForm, getApplyFormFun);
   yield takeLatest(removeApplyForm, removeApplyFormFun);
 
-  
   //admission
   yield takeLatest(getAdmissions, getAdmissionsFun);
   yield takeLatest(removeAdmission, removeAdmissionFun);
@@ -1469,7 +1394,6 @@ export function* watchGetUser() {
   yield takeLatest(getResume.type, getResumeFun);
   yield takeLatest(removeResume.type, removeResumeFun);
   yield takeLatest(getDashboardDataa, getDashboardDataaFun);
-
 
   //Enquire
   yield takeLatest(getEnquire, getEnquireFun);
@@ -1511,15 +1435,11 @@ export function* watchGetUser() {
   yield takeLatest(updateOurteam, updateOurteamFun);
 
   //faq
-     yield takeLatest(getFaqs.type, getFaqsFun);
+  yield takeLatest(getFaqs.type, getFaqsFun);
   yield takeLatest(getOneFaq, getOneFaqFun);
   yield takeLatest(addFaq, addFaqFun);
   yield takeLatest(updateFaq, updateFaqFun);
   yield takeLatest(removeFaq, removeFaqFun);
-
-
-
-
 
   //Customer
   yield takeLatest(addCustomer, addCustomerFun);
@@ -1529,13 +1449,11 @@ export function* watchGetUser() {
   yield takeLatest(updateCustomer, updateCustomerFun);
   yield takeLatest(searchByMobile, searchByMobileFun);
 
-
   // order DB
   yield takeLatest(addOrderListDB, addOrderListDBFun);
   yield takeLatest(getOrderListDB, getOrderListDBFun);
   yield takeLatest(getOrderDeatilsDB, getOrderDeatilsDBFun);
   yield takeLatest(updateOrderListDB, updateOrderAPI);
-
 
   //events
   yield takeLatest(getEvent, getEventFun);
@@ -1544,21 +1462,18 @@ export function* watchGetUser() {
   yield takeLatest(addEvent, addEventFun);
   yield takeLatest(updateEvent, updateEventFun);
 
-
- yield takeLatest(getCareer, getCareerFun);
+  yield takeLatest(getCareer, getCareerFun);
 
   yield takeLatest(getOneCareer, getOneCareerFun);
   yield takeLatest(addCareer, addCareerFun);
   yield takeLatest(updateCareer, updateCareerFun);
   yield takeLatest(removeCareer, removeCareerFun);
 
-    yield takeLatest(getService, getServiceFun);
+  yield takeLatest(getService, getServiceFun);
   yield takeLatest(getOneService, getOneServiceFun);
   yield takeLatest(addService, addServiceFun);
   yield takeLatest(updateService, updateServiceFun);
   yield takeLatest(removeService, removeServiceFun);
-
-
 
   yield takeLatest(getManagement, getManagementFun);
   yield takeLatest(getOneManagement, getOneManagementFun);
@@ -1566,15 +1481,9 @@ export function* watchGetUser() {
   yield takeLatest(updateManagement, updateManagementFun);
   yield takeLatest(removeManagement, removeManagementFun);
 
-
-
-
-
   yield takeLatest(getBlog, getBlogFun);
   yield takeLatest(getOneBlog, getOneBlogFun);
   yield takeLatest(addBlog, addBlogFun);
   yield takeLatest(updateBlog, updateBlogFun);
   yield takeLatest(removeBlog, removeBlogFun);
-
-
 }

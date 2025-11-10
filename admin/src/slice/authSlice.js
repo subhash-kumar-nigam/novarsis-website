@@ -5,7 +5,7 @@ const initialState = {
   response: null,
   loading: false,
   error: null,
-  token: null,
+  token: null
 };
 
 export const authSlice = createSlice({
@@ -27,8 +27,8 @@ export const authSlice = createSlice({
       state.response = action.payload;
       state.token = action.payload?.response?.data?.access_token;
       state.error = null;
-    },
-  },
+    }
+  }
 });
 
 // Action creators are generated for each case reducer function

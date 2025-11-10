@@ -7,7 +7,7 @@ const initialState = {
   error: null,
   callTimes: 0,
   message: '',
-  data: [],
+  data: []
 };
 
 export const enquireSlice = createSlice({
@@ -29,17 +29,11 @@ export const enquireSlice = createSlice({
     },
     failedEnquire: (state, action) => {
       state.value += action.payload;
-    },
-  },
+    }
+  }
 });
 
 // Action creators are generated for each case reducer function
-export const {
-  getEnquire,
-  removeEnquire,
-  updateEnquire,
-  successEnquire,
-  failedEnquire,
-} = enquireSlice.actions;
+export const { getEnquire, removeEnquire, updateEnquire, successEnquire, failedEnquire } = enquireSlice.actions;
 
 export default enquireSlice.reducer;

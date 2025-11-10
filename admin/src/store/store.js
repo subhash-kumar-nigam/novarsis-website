@@ -34,7 +34,7 @@ import rootSaga from '../apis/rootSaga';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: [], // Add slices here if you want them persisted
+  whitelist: [] // Add slices here if you want them persisted
 };
 
 // Combine reducers
@@ -60,7 +60,7 @@ const rootReducer = combineReducers({
   admission: admissionReducer,
   faq: faqReducer,
   management: managementReducer,
-  blog: blogReducer,
+  blog: blogReducer
 });
 
 // Persisted reducer
@@ -76,17 +76,11 @@ const store = configureStore({
     getDefaultMiddleware({
       thunk: false,
       serializableCheck: {
-        ignoredActions: [
-          'persist/PERSIST',
-          'teacher/addTeacher',
-          'teacher/updateTeacher',
-          'event/addEvent',
-          'event/updateEvent',
-        ],
-        ignoredPaths: ['teacher.formData', 'event.formData'],
-      },
+        ignoredActions: ['persist/PERSIST', 'teacher/addTeacher', 'teacher/updateTeacher', 'event/addEvent', 'event/updateEvent'],
+        ignoredPaths: ['teacher.formData', 'event.formData']
+      }
     }).concat(sagaMiddleware),
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: process.env.NODE_ENV !== 'production'
 });
 
 // Run root saga

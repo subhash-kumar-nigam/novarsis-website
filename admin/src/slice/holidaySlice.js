@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   user: null,
@@ -8,7 +8,7 @@ const initialState = {
   callTimes: 0,
   message: '',
   data: []
-}
+};
 
 export const holidaySlice = createSlice({
   name: 'holidaySliceName',
@@ -19,24 +19,16 @@ export const holidaySlice = createSlice({
     getOneHoliday: () => {},
 
     successHoliday: (state, action) => {
-      state.data = action.payload
+      state.data = action.payload;
     },
     removeHoliday: () => {},
     updateHoliday: () => {},
     failedHoliday: (state, action) => {
-      state.response += action.payload
-    },
-  },
-})
+      state.response += action.payload;
+    }
+  }
+});
 
-export const { 
-  addHoliday, 
-  removeHoliday, 
-  updateHoliday, 
-  getHolidays, 
-  successHoliday, 
-  getOneHoliday, 
-  failedHoliday 
-} = holidaySlice.actions
+export const { addHoliday, removeHoliday, updateHoliday, getHolidays, successHoliday, getOneHoliday, failedHoliday } = holidaySlice.actions;
 
-export default holidaySlice.reducer
+export default holidaySlice.reducer;

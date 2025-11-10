@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   user: null,
@@ -6,12 +6,12 @@ const initialState = {
   loading: false,
   error: null,
   callTimes: 0,
-  message: "",
-  data: [],
+  message: '',
+  data: []
 };
 
 export const examupdateSlice = createSlice({
-  name: "examupdateSliceName",
+  name: 'examupdateSliceName',
   initialState,
   reducers: {
     // Actions for saga to listen to
@@ -32,8 +32,8 @@ export const examupdateSlice = createSlice({
     },
     setLoading: (state, action) => {
       state.loading = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export const {
@@ -44,7 +44,7 @@ export const {
   updateExamupdate,
   successExamupdate,
   failedExamupdate,
-  setLoading,
+  setLoading
 } = examupdateSlice.actions;
 
 export default examupdateSlice.reducer;

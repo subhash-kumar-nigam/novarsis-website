@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL, // Set your base URL here
+  baseURL: process.env.REACT_APP_BACKEND_URL // Set your base URL here
   // You can also set other default configurations here
 });
 
@@ -38,9 +38,13 @@ axiosInstance.interceptors.response.use(
           const refreshToken = Cookies.get('refreshToken');
 
           // Attempt to refresh the token
-          const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/admin/refresh`, {'token':refreshToken}, {
-            withCredentials: true, // Ensure cookies are sent with the request
-          });
+          const response = await axios.post(
+            `${process.env.REACT_APP_BACKEND_URL}/admin/refresh`,
+            { token: refreshToken },
+            {
+              withCredentials: true // Ensure cookies are sent with the request
+            }
+          );
 
           // Get the new token from the response
           const newToken = response.data?.access_token;

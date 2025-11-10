@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   user: null,
@@ -8,7 +8,7 @@ const initialState = {
   callTimes: 0,
   message: '',
   data: []
-}
+};
 
 export const busSlice = createSlice({
   name: 'busSliceName',
@@ -19,24 +19,16 @@ export const busSlice = createSlice({
     getOneBus: () => {},
 
     successBus: (state, action) => {
-      state.data = action.payload
+      state.data = action.payload;
     },
     removeBus: () => {},
     updateBus: () => {},
     failedBus: (state, action) => {
-      state.response += action.payload
-    },
-  },
-})
+      state.response += action.payload;
+    }
+  }
+});
 
-export const { 
-  addBus, 
-  removeBus, 
-  updateBus, 
-  getBuses, 
-  successBus, 
-  getOneBus, 
-  failedBus 
-} = busSlice.actions
+export const { addBus, removeBus, updateBus, getBuses, successBus, getOneBus, failedBus } = busSlice.actions;
 
-export default busSlice.reducer
+export default busSlice.reducer;

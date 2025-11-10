@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   data: [],
   loading: false,
-  error: null,
+  error: null
 };
 
 export const eventSlice = createSlice({
@@ -22,11 +22,10 @@ export const eventSlice = createSlice({
     },
     failedEvent: (state, action) => {
       state.response = action.payload;
-    },
-  },
+    }
+  }
 });
 
-export const { addEvent, getEvent, getOneEvent, updateEvent, removeEvent, successEvent, failedEvent } =
-  eventSlice.actions;
+export const { addEvent, getEvent, getOneEvent, updateEvent, removeEvent, successEvent, failedEvent } = eventSlice.actions;
 
 export default eventSlice.reducer;

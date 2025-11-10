@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addBlog } from "../../slice/blogSlice"; // ✅ Import from blog slice
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addBlog } from '../../slice/blogSlice'; // ✅ Import from blog slice
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const AddBlog = () => {
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    date: "",
-    image: null,
+    title: '',
+    description: '',
+    date: '',
+    image: null
   });
 
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const AddBlog = () => {
   // ✅ Handle input change
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === "image") {
+    if (name === 'image') {
       setFormData({ ...formData, image: files[0] });
     } else {
       setFormData({ ...formData, [name]: value });
@@ -31,20 +31,20 @@ const AddBlog = () => {
     e.preventDefault();
 
     const formDataToSend = new FormData();
-    formDataToSend.append("title", formData.title);
-    formDataToSend.append("description", formData.description);
-    formDataToSend.append("date", formData.date);
+    formDataToSend.append('title', formData.title);
+    formDataToSend.append('description', formData.description);
+    formDataToSend.append('date', formData.date);
     if (formData.image) {
-      formDataToSend.append("image", formData.image);
+      formDataToSend.append('image', formData.image);
     }
 
     try {
       await dispatch(addBlog(formDataToSend));
-      toast.success("Blog added successfully!");
-      navigate("/blogs/list");
+      toast.success('Blog added successfully!');
+      navigate('/blogs/list');
     } catch (err) {
-      console.error("Error adding blog:", err);
-      toast.error("Failed to add blog");
+      console.error('Error adding blog:', err);
+      toast.error('Failed to add blog');
     }
   };
 
@@ -58,21 +58,17 @@ const AddBlog = () => {
         <div className="row mx-4">
           {/* Title */}
           <div className="col-sm-12 mt-3">
-            <label htmlFor="title" className="adminlables">Title</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={formData.title}
-              className="form-control"
-              onChange={handleChange}
-              required
-            />
+            <label htmlFor="title" className="adminlables">
+              Title
+            </label>
+            <input type="text" id="title" name="title" value={formData.title} className="form-control" onChange={handleChange} required />
           </div>
 
           {/* Description */}
           <div className="col-sm-12 mt-3">
-            <label htmlFor="description" className="adminlables">Description</label>
+            <label htmlFor="description" className="adminlables">
+              Description
+            </label>
             <textarea
               id="description"
               name="description"
@@ -86,40 +82,24 @@ const AddBlog = () => {
 
           {/* Date */}
           <div className="col-sm-12 mt-3">
-            <label htmlFor="date" className="adminlables">Date</label>
-            <input
-              type="date"
-              id="date"
-              name="date"
-              value={formData.date}
-              className="form-control"
-              onChange={handleChange}
-              required
-            />
+            <label htmlFor="date" className="adminlables">
+              Date
+            </label>
+            <input type="date" id="date" name="date" value={formData.date} className="form-control" onChange={handleChange} required />
           </div>
 
           {/* Image */}
           <div className="col-sm-12 mt-3">
-            <label htmlFor="image" className="adminlables">Upload Image</label>
-            <input
-              type="file"
-              id="image"
-              name="image"
-              className="form-control"
-              accept="image/*"
-              onChange={handleChange}
-            />
+            <label htmlFor="image" className="adminlables">
+              Upload Image
+            </label>
+            <input type="file" id="image" name="image" className="form-control" accept="image/*" onChange={handleChange} />
           </div>
 
           {/* Preview */}
           {formData.image && (
             <div className="col-sm-12 mt-3">
-              <img
-                src={URL.createObjectURL(formData.image)}
-                alt="preview"
-                width="150"
-                className="rounded"
-              />
+              <img src={URL.createObjectURL(formData.image)} alt="preview" width="150" className="rounded" />
             </div>
           )}
         </div>

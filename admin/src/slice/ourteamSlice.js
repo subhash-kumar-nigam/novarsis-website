@@ -4,7 +4,7 @@ const initialState = {
   data: [],
   singleData: null,
   loading: false,
-  error: null,
+  error: null
 };
 
 export const ourteamSlice = createSlice({
@@ -39,19 +39,11 @@ export const ourteamSlice = createSlice({
     failedOurteam: (state, action) => {
       state.loading = false;
       state.error = action.payload;
-    },
-  },
+    }
+  }
 });
 
-export const {
-  addOurteam,
-  getOurteam,
-  getOneOurteam,
-  updateOurteam,
-  removeOurteam,
-  successOurteam,
-  successOneOurteam,
-  failedOurteam
-} = ourteamSlice.actions;
+export const { addOurteam, getOurteam, getOneOurteam, updateOurteam, removeOurteam, successOurteam, successOneOurteam, failedOurteam } =
+  ourteamSlice.actions;
 
 export default ourteamSlice.reducer;

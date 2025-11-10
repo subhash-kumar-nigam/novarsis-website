@@ -7,7 +7,7 @@ const initialState = {
   error: null,
   callTimes: 0,
   message: '',
-  data: [],
+  data: []
 };
 
 export const applyFormSlice = createSlice({
@@ -25,18 +25,12 @@ export const applyFormSlice = createSlice({
     },
     failedApplyForm: (state, action) => {
       state.value += action.payload;
-    },
-  },
+    }
+  }
 });
 
 // Export actions
-export const {
-  getApplyForm,
-  removeApplyForm,
-  updateApplyForm,
-  successApplyForm,
-  failedApplyForm,
-} = applyFormSlice.actions;
+export const { getApplyForm, removeApplyForm, updateApplyForm, successApplyForm, failedApplyForm } = applyFormSlice.actions;
 
 // Export reducer
 export default applyFormSlice.reducer;

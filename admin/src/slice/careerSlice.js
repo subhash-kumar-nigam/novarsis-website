@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   data: [],
   loading: false,
-  error: null,
+  error: null
 };
 
 export const careerSlice = createSlice({
@@ -27,18 +27,10 @@ export const careerSlice = createSlice({
     failedCareer: (state, action) => {
       state.loading = false;
       state.error = action.payload;
-    },
-  },
+    }
+  }
 });
 
-export const {
-  addCareer,
-  getCareer,
-  getOneCareer,
-  updateCareer,
-  removeCareer,
-  successCareer,
-  failedCareer,
-} = careerSlice.actions;
+export const { addCareer, getCareer, getOneCareer, updateCareer, removeCareer, successCareer, failedCareer } = careerSlice.actions;
 
 export default careerSlice.reducer;

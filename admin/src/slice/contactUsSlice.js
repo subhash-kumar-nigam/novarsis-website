@@ -7,7 +7,7 @@ const initialState = {
   error: null,
   callTimes: 0,
   message: '',
-  data: [],
+  data: []
 };
 
 export const contactUsSlice = createSlice({
@@ -26,18 +26,12 @@ export const contactUsSlice = createSlice({
     },
     failedContactUs: (state, action) => {
       state.value += action.payload;
-    },
-  },
+    }
+  }
 });
 
 // ✅ Action creators are generated for each case reducer function
-export const {
-  getContactUs,
-  removeContactUs,
-  updateContactUs,
-  successContactUs,
-  failedContactUs,
-  getDashboardData,
-} = contactUsSlice.actions;
+export const { getContactUs, removeContactUs, updateContactUs, successContactUs, failedContactUs, getDashboardData } =
+  contactUsSlice.actions;
 
 export default contactUsSlice.reducer;

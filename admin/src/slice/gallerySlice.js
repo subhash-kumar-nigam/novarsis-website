@@ -7,7 +7,7 @@ const initialState = {
   error: null,
   callTimes: 0,
   message: '',
-  data: [],
+  data: []
 };
 
 export const gallerySlice = createSlice({
@@ -25,18 +25,11 @@ export const gallerySlice = createSlice({
     updateGallery: () => {},
     emptyCart: (state, action) => {
       state.value += action.payload;
-    },
-  },
+    }
+  }
 });
 
 // Action creators are generated for each case reducer function
-export const {
-  addGallery,
-  removeGallery,
-  updateGallery,
-  getGallery,
-  successGallery,
-  getOneGallery,
-} = gallerySlice.actions;
+export const { addGallery, removeGallery, updateGallery, getGallery, successGallery, getOneGallery } = gallerySlice.actions;
 
 export default gallerySlice.reducer;

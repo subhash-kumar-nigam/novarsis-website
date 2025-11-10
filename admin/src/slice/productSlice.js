@@ -7,7 +7,7 @@ const initialState = {
   error: null,
   callTimes: 0,
   message: '',
-  data: [],
+  data: []
 };
 
 export const productSlice = createSlice({
@@ -25,19 +25,12 @@ export const productSlice = createSlice({
     emptyCart: (state, action) => {
       state.value += action.payload;
     },
-    searchProductByName: () => {},
-  },
+    searchProductByName: () => {}
+  }
 });
 
 // Action creators
-export const {
-  addProduct,
-  removeProduct,
-  updateProduct,
-  getProduct,
-  successProduct,
-  getOneProduct,
-  searchProductByName
-} = productSlice.actions;
+export const { addProduct, removeProduct, updateProduct, getProduct, successProduct, getOneProduct, searchProductByName } =
+  productSlice.actions;
 
 export default productSlice.reducer;

@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getApplyForm, removeApplyForm } from "../slice/applyFormSlice";
-import AdminTable from "common/AdminTable";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getApplyForm, removeApplyForm } from '../slice/applyFormSlice';
+import AdminTable from 'common/AdminTable';
 
 const Applyform = () => {
   const dispatch = useDispatch();
@@ -9,63 +9,59 @@ const Applyform = () => {
 
   const tableHeaders = [
     {
-      Header: "ID",
-      accessor: "id",
+      Header: 'ID',
+      accessor: 'id'
     },
     {
-      Header: "Name",
-      accessor: "name",
+      Header: 'Name',
+      accessor: 'name'
     },
     {
-      Header: "Email",
-      accessor: "email",
+      Header: 'Email',
+      accessor: 'email'
     },
     {
-      Header: "Number",
-      accessor: "number",
+      Header: 'Number',
+      accessor: 'number'
     },
     {
-      Header: "Experience",
-      accessor: "experience",
+      Header: 'Experience',
+      accessor: 'experience'
     },
     {
-      Header: "Current CTC",
-      accessor: "currentCTC",
+      Header: 'Current CTC',
+      accessor: 'currentCTC'
     },
     {
-      Header: "Expected CTC",
-      accessor: "expectedCTC",
+      Header: 'Expected CTC',
+      accessor: 'expectedCTC'
     },
     {
-      Header: "Resume",
-      accessor: "resume",
+      Header: 'Resume',
+      accessor: 'resume',
       Cell: ({ row }) =>
         row.original.resume ? (
-     <a
-      href={`${process.env.REACT_APP_BACKEND}uploads/${row.original.resume}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="btn btn-sm btn-outline-info"
-    >
-      View
-    </a>
-
+          <a
+            href={`${process.env.REACT_APP_BACKEND}uploads/${row.original.resume}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-sm btn-outline-info"
+          >
+            View
+          </a>
         ) : (
-          "No File"
-        ),
+          'No File'
+        )
     },
     {
-      Header: "Actions",
-      accessor: "actions",
+      Header: 'Actions',
+      accessor: 'actions',
       Cell: ({ row }) => (
-        <button
-          className="btn removebtn"
-          onClick={() => dispatch(removeApplyForm(row.original.id))}
-        >
+        <button className="btn removebtn" onClick={() => dispatch(removeApplyForm(row.original.id))}>
           Remove
         </button>
-      ),
-    },
+      )
+    }
   ];
 
   useEffect(() => {

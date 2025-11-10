@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAdmissions, removeAdmission } from '../slice/admissionSlice';
 import AdminTable from 'common/AdminTable';
 
-
 const Admission = () => {
   const dispatch = useDispatch();
   const admissionData = useSelector((state) => state.admission);
@@ -26,14 +25,10 @@ const Admission = () => {
       accessor: 'photo',
       Cell: ({ row }) =>
         row.original.photo ? (
-          <img
-            src={`uploads/admissions/${row.original.photo}`}
-            alt="Student"
-            className="w-12 h-12 object-cover rounded"
-          />
+          <img src={`uploads/admissions/${row.original.photo}`} alt="Student" className="w-12 h-12 object-cover rounded" />
         ) : (
           'N/A'
-        ),
+        )
     },
     {
       Header: 'Birth Certificate',
@@ -50,7 +45,7 @@ const Admission = () => {
           </a>
         ) : (
           'N/A'
-        ),
+        )
     },
     {
       Header: 'Report Card',
@@ -67,7 +62,7 @@ const Admission = () => {
           </a>
         ) : (
           'N/A'
-        ),
+        )
     },
     {
       Header: 'Actions',
@@ -79,8 +74,8 @@ const Admission = () => {
         >
           Remove
         </button>
-      ),
-    },
+      )
+    }
   ];
 
   useEffect(() => {
@@ -94,10 +89,7 @@ const Admission = () => {
       </div>
 
       {admissionData?.data?.length > 0 ? (
-        <AdminTable
-          tableHeaders={tableHeaders}
-          tableData={admissionData.data}
-        />
+        <AdminTable tableHeaders={tableHeaders} tableData={admissionData.data} />
       ) : (
         <p className="text-white mx-4 mt-4">No admissions found.</p>
       )}

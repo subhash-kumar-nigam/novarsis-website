@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  getCareer,
-  removeCareer,
-  updateCareer,
-} from "../../slice/careerSlice";
-import AdminTable from "../../common/AdminTable";
-import { toast } from "react-toastify";
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getCareer, removeCareer, updateCareer } from '../../slice/careerSlice';
+import AdminTable from '../../common/AdminTable';
+import { toast } from 'react-toastify';
 
 const ListCareer = () => {
   const dispatch = useDispatch();
@@ -17,11 +13,11 @@ const ListCareer = () => {
   const [selectedCareer, setSelectedCareer] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
-    title: "",
-    location: "",
-    type: "Full-Time",
-    experience: "",
-    description: "",
+    title: '',
+    location: '',
+    type: 'Full-Time',
+    experience: '',
+    description: ''
   });
 
   // ✅ Fetch all careers
@@ -37,7 +33,7 @@ const ListCareer = () => {
       location: career.location,
       type: career.type,
       experience: career.experience,
-      description: career.description,
+      description: career.description
     });
     setShowModal(true);
   };
@@ -46,10 +42,10 @@ const ListCareer = () => {
   const handleRemove = async (id) => {
     try {
       await dispatch(removeCareer(id));
-      toast.success("Career removed successfully!");
+      toast.success('Career removed successfully!');
       dispatch(getCareer());
     } catch (err) {
-      toast.error("Failed to remove career");
+      toast.error('Failed to remove career');
     }
   };
 
@@ -63,11 +59,11 @@ const ListCareer = () => {
   const handleSaveChanges = async () => {
     try {
       await dispatch(updateCareer({ id: selectedCareer.id, data: formData }));
-      toast.success("Career updated successfully!");
+      toast.success('Career updated successfully!');
       dispatch(getCareer());
       closeModal();
     } catch {
-      toast.error("Failed to update career");
+      toast.error('Failed to update career');
     }
   };
 
@@ -76,41 +72,35 @@ const ListCareer = () => {
     setShowModal(false);
     setSelectedCareer(null);
     setFormData({
-      title: "",
-      location: "",
-      type: "Full-Time",
-      experience: "",
-      description: "",
+      title: '',
+      location: '',
+      type: 'Full-Time',
+      experience: '',
+      description: ''
     });
   };
 
   const tableHeaders = [
-    { Header: "ID", accessor: "id" },
-    { Header: "Title", accessor: "title" },
-    { Header: "Location", accessor: "location" },
-    { Header: "Type", accessor: "type" },
-    { Header: "Experience", accessor: "experience" },
-    { Header: "Description", accessor: "description" },
+    { Header: 'ID', accessor: 'id' },
+    { Header: 'Title', accessor: 'title' },
+    { Header: 'Location', accessor: 'location' },
+    { Header: 'Type', accessor: 'type' },
+    { Header: 'Experience', accessor: 'experience' },
+    { Header: 'Description', accessor: 'description' },
     {
-      Header: "Actions",
-      accessor: "actions",
+      Header: 'Actions',
+      accessor: 'actions',
       Cell: ({ row }) => (
         <>
-          <button
-            className="btn btn-danger btn-sm mx-1"
-            onClick={() => handleRemove(row.original.id)}
-          >
+          <button className="btn btn-danger btn-sm mx-1" onClick={() => handleRemove(row.original.id)}>
             Remove
           </button>
-          <button
-            className="btn btn-primary btn-sm mx-1"
-            onClick={() => handleEditClick(row.original)}
-          >
+          <button className="btn btn-primary btn-sm mx-1" onClick={() => handleEditClick(row.original)}>
             Edit
           </button>
         </>
-      ),
-    },
+      )
+    }
   ];
 
   return (
@@ -157,12 +147,7 @@ const ListCareer = () => {
                   className="form-control mb-2"
                   placeholder="Location"
                 />
-                <select
-                  name="type"
-                  value={formData.type}
-                  onChange={handleFormChange}
-                  className="form-control mb-2"
-                >
+                <select name="type" value={formData.type} onChange={handleFormChange} className="form-control mb-2">
                   <option>Full-Time</option>
                   <option>Part-Time</option>
                   <option>Internship</option>
@@ -187,16 +172,10 @@ const ListCareer = () => {
               </div>
 
               <div className="modal-footer">
-                <button
-                  className="btn btn-secondary"
-                  onClick={closeModal}
-                >
+                <button className="btn btn-secondary" onClick={closeModal}>
                   Close
                 </button>
-                <button
-                  className="btn btn-primary"
-                  onClick={handleSaveChanges}
-                >
+                <button className="btn btn-primary" onClick={handleSaveChanges}>
                   Save Changes
                 </button>
               </div>

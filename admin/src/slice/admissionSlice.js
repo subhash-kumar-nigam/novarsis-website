@@ -7,7 +7,7 @@ const initialState = {
   error: null,
   callTimes: 0,
   message: '',
-  data: [],
+  data: []
 };
 
 export const admissionSlice = createSlice({
@@ -34,18 +34,12 @@ export const admissionSlice = createSlice({
     failedAdmission: (state, action) => {
       state.loading = false;
       state.error = action.payload;
-    },
-  },
+    }
+  }
 });
 
 // Export actions
-export const {
-  getAdmissions,
-  addAdmission,
-  removeAdmission,
-  successAdmission,
-  failedAdmission,
-} = admissionSlice.actions;
+export const { getAdmissions, addAdmission, removeAdmission, successAdmission, failedAdmission } = admissionSlice.actions;
 
 // Export reducer
 export default admissionSlice.reducer;

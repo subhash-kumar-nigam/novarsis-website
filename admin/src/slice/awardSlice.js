@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   user: null,
@@ -8,47 +8,29 @@ const initialState = {
   callTimes: 0,
   message: '',
   data: []
-}
+};
 
 export const awardSlice = createSlice({
   name: 'awardSliceName',
   initialState,
   reducers: {
-    addAward: () => {
-
-    },
-    getAwards: () => {
-
-    },
-    getOneAward: () => {
-
-    },
+    addAward: () => {},
+    getAwards: () => {},
+    getOneAward: () => {},
 
     successAward: (state, action) => {
-      console.log(state)
-      state.data = action.payload
+      console.log(state);
+      state.data = action.payload;
     },
-    removeAward: () => {
-
-    },
-    updateAward: () => {
-
-    },
+    removeAward: () => {},
+    updateAward: () => {},
     failedAward: (state, action) => {
-      state.response += action.payload
-    },
-  },
-})
+      state.response += action.payload;
+    }
+  }
+});
 
-export const { 
-  addAward, 
-  removeAward, 
-  updateAward, 
-  getAwards, 
-  successAward, 
-  getOneAward, 
-  failedAward 
-} = awardSlice.actions
+export const { addAward, removeAward, updateAward, getAwards, successAward, getOneAward, failedAward } = awardSlice.actions;
 
 // ✅ Reducer export
-export default awardSlice.reducer
+export default awardSlice.reducer;

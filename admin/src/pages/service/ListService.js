@@ -9,7 +9,7 @@ const ListService = () => {
   const serviceData = useSelector((state) => state.service) || {
     data: [],
     loading: false,
-    error: null,
+    error: null
   };
   const { data = [], loading, error } = serviceData;
 
@@ -18,7 +18,7 @@ const ListService = () => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    image: '',
+    image: ''
   });
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const ListService = () => {
     setFormData({
       title: service.title || '',
       description: service.description || '',
-      image: service.image || '',
+      image: service.image || ''
     });
     setShowModal(true);
   };
@@ -88,28 +88,22 @@ const ListService = () => {
           />
         ) : (
           <span>No Image</span>
-        ),
+        )
     },
     {
       Header: 'Actions',
       accessor: 'actions',
       Cell: ({ row }) => (
         <>
-          <button
-            className="btn removebtn mx-1"
-            onClick={() => handleRemove(row.original.id)}
-          >
+          <button className="btn removebtn mx-1" onClick={() => handleRemove(row.original.id)}>
             Remove
           </button>
-          <button
-            className="btn editbtn mx-1"
-            onClick={() => handleEditClick(row.original)}
-          >
+          <button className="btn editbtn mx-1" onClick={() => handleEditClick(row.original)}>
             Edit
           </button>
         </>
-      ),
-    },
+      )
+    }
   ];
 
   return (

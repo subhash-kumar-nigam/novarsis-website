@@ -7,7 +7,7 @@ const initialState = {
   error: null,
   callTimes: 0,
   message: '',
-  data: [],
+  data: []
 };
 
 export const internshipSlice = createSlice({
@@ -45,13 +45,6 @@ export const internshipSlice = createSlice({
   }
 });
 
-export const {
-  getResume,
-  removeResume,
-  updateResume,
-  successResume,
-  failedResume,
-  getDashboardDataa
-} = internshipSlice.actions;
+export const { getResume, removeResume, updateResume, successResume, failedResume, getDashboardDataa } = internshipSlice.actions;
 
 export default internshipSlice.reducer;

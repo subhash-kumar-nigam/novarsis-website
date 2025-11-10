@@ -7,7 +7,7 @@ const initialState = {
   error: null,
   callTimes: 0,
   message: '',
-  data: [],
+  data: []
 };
 
 export const bannerSlice = createSlice({
@@ -23,18 +23,11 @@ export const bannerSlice = createSlice({
       state.data = action.payload;
     },
     removeBanner: () => {},
-    updateBanner: () => {},
-  },
+    updateBanner: () => {}
+  }
 });
 
 // Action creators are generated for each case reducer function
-export const {
-  addBanner,
-  removeBanner,
-  updateBanner,
-  getBanner,
-  successBanner,
-  getOneBanner,
-} = bannerSlice.actions;
+export const { addBanner, removeBanner, updateBanner, getBanner, successBanner, getOneBanner } = bannerSlice.actions;
 
 export default bannerSlice.reducer;

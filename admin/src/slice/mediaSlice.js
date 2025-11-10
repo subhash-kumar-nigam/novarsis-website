@@ -7,7 +7,7 @@ const initialState = {
   error: null,
   callTimes: 0,
   message: '',
-  data: [],
+  data: []
 };
 
 export const mediaSlice = createSlice({
@@ -29,13 +29,6 @@ export const mediaSlice = createSlice({
 });
 
 // Action creators
-export const {
-  addMedia,
-  removeMedia,
-  updateMedia,
-  getMedia,
-  successMedia,
-  getOneMedia
-} = mediaSlice.actions;
+export const { addMedia, removeMedia, updateMedia, getMedia, successMedia, getOneMedia } = mediaSlice.actions;
 
 export default mediaSlice.reducer;

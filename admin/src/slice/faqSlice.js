@@ -4,7 +4,7 @@ const initialState = {
   data: [],
   loading: false,
   error: null,
-  message: '',
+  message: ''
 };
 
 const faqSlice = createSlice({
@@ -42,18 +42,10 @@ const faqSlice = createSlice({
     failedFaq: (state, action) => {
       state.loading = false;
       state.error = action.payload || 'Something went wrong';
-    },
-  },
+    }
+  }
 });
 
-export const {
-  getFaqs,
-  getOneFaq,
-  addFaq,
-  updateFaq,
-  removeFaq,
-  successFaq,
-  failedFaq,
-} = faqSlice.actions;
+export const { getFaqs, getOneFaq, addFaq, updateFaq, removeFaq, successFaq, failedFaq } = faqSlice.actions;
 
 export default faqSlice.reducer;

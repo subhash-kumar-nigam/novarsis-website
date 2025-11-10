@@ -7,7 +7,7 @@ const initialState = {
   error: null,
   callTimes: 0,
   message: '',
-  token: null,
+  token: null
 };
 
 const userData = localStorage.getItem('user') ? localStorage.getItem('user') : null;
@@ -49,8 +49,8 @@ export const userSlice = createSlice({
       state.response = [];
       state.loading = false;
       state.message = 'Logout Successfully';
-    },
-  },
+    }
+  }
 });
 
 export const { signup, signin, success, failed, logout } = userSlice.actions;

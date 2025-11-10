@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   data: [],
   loading: false,
-  error: null,
+  error: null
 };
 
 export const managementSlice = createSlice({
@@ -27,14 +27,7 @@ export const managementSlice = createSlice({
   }
 });
 
-export const {
-  addManagement,
-  getManagement,
-  getOneManagement,
-  updateManagement,
-  removeManagement,
-  successManagement,
-  failedManagement
-} = managementSlice.actions;
+export const { addManagement, getManagement, getOneManagement, updateManagement, removeManagement, successManagement, failedManagement } =
+  managementSlice.actions;
 
 export default managementSlice.reducer;

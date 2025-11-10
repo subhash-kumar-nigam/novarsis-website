@@ -8,7 +8,7 @@ const AddService = () => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    image: null,
+    image: null
   });
 
   const dispatch = useDispatch();
@@ -87,14 +87,7 @@ const AddService = () => {
           <label htmlFor="image" className="adminlables">
             Upload Image
           </label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
-            onChange={handleFileChange}
-            className="form-control"
-          />
+          <input type="file" id="image" name="image" accept="image/*" onChange={handleFileChange} className="form-control" />
         </div>
 
         {/* Submit */}

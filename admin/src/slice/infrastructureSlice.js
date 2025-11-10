@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  data: [],      // list या single data
+  data: [], // list या single data
   loading: false,
-  error: null,
+  error: null
 };
 
 export const infrastructureSlice = createSlice({
@@ -34,8 +34,8 @@ export const infrastructureSlice = createSlice({
     failedInfrastructure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export const {
@@ -45,7 +45,7 @@ export const {
   updateInfrastructure,
   removeInfrastructure,
   successInfrastructure,
-  failedInfrastructure,
+  failedInfrastructure
 } = infrastructureSlice.actions;
 
 export default infrastructureSlice.reducer;

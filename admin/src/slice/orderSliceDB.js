@@ -7,7 +7,7 @@ const initialState = {
   error: null,
   callTimes: 0,
   message: '',
-  data: [],
+  data: []
 };
 
 export const orderSliceDB = createSlice({
@@ -35,8 +35,8 @@ export const orderSliceDB = createSlice({
     },
     failedOrderListDB: (state, action) => {
       state.value += action.payload;
-    },
-  },
+    }
+  }
 });
 
 export const {

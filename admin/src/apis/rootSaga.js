@@ -1,9 +1,9 @@
-import { all, fork } from "redux-saga/effects";
-import { watchGetUser } from "./apiHandler";
+import { all, fork } from 'redux-saga/effects';
+import { watchGetUser } from './apiHandler';
 
 const rootSaga = function* () {
   yield all([
-    fork(watchGetUser),
+    fork(watchGetUser)
     // Other forks
   ]);
 };

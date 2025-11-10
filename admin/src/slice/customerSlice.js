@@ -7,7 +7,7 @@ const initialState = {
   error: null,
   callTimes: 0,
   message: '',
-  data: [],
+  data: []
 };
 
 export const customerSlice = createSlice({
@@ -24,19 +24,12 @@ export const customerSlice = createSlice({
     },
     searchByMobile: () => {},
     removeCustomer: () => {},
-    updateCustomer: () => {},
-  },
+    updateCustomer: () => {}
+  }
 });
 
 // Action creators are generated for each case reducer function
-export const {
-  addCustomer,
-  removeCustomer,
-  updateCustomer,
-  getCustomer,
-  successCustomer,
-  getOneCustomer,
-  searchByMobile,
-} = customerSlice.actions;
+export const { addCustomer, removeCustomer, updateCustomer, getCustomer, successCustomer, getOneCustomer, searchByMobile } =
+  customerSlice.actions;
 
 export default customerSlice.reducer;

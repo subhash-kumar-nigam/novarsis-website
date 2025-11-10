@@ -16,22 +16,17 @@ const Contactus = () => {
     {
       Header: 'Message',
       accessor: 'message',
-      Cell: ({ row }) => (
-        <TruncatedMessage text={row.original.message} maxLength={10} />
-      ),
+      Cell: ({ row }) => <TruncatedMessage text={row.original.message} maxLength={10} />
     },
     {
       Header: 'Actions',
       accessor: 'actions',
       Cell: ({ row }) => (
-        <button
-          className="btn removebtn"
-          onClick={() => dispatch(removeContactUs(row.original.id))}
-        >
+        <button className="btn removebtn" onClick={() => dispatch(removeContactUs(row.original.id))}>
           Remove
         </button>
-      ),
-    },
+      )
+    }
   ];
 
   useEffect(() => {

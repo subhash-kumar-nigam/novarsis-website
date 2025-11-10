@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const PrivateRouter = () => {
-  const isLoggedIn =
-    useSelector((state) => state.user.response) && localStorage.getItem('user');
+  const isLoggedIn = useSelector((state) => state.user.response) && localStorage.getItem('user');
 
   return (
     <div>
