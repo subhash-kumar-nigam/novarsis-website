@@ -9,7 +9,7 @@ const log4js = require("log4js");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocs = require("./config/swaggerConfig");
 const dotenv = require("dotenv");
-const multer = require("multer"); 
+const multer = require("multer");
 
 // Routes
 const indexRouter = require("./routes/index");
@@ -23,7 +23,7 @@ dotenv.config();
 // App Initialization
 // ==============================
 const app = express();
-const upload = multer(); // ✅ Add this line
+const upload = multer(); // ✅ Multer for form-data
 
 // ==============================
 // Logger Configuration
@@ -37,24 +37,35 @@ const logger = log4js.getLogger("app");
 // ==============================
 // Middleware Configuration
 // ==============================
-const allowedOrigins = ["http://localhost:3000", "http://localhost:3001" , "https://novarsis-full-c1fe.vercel.app" , "https://novarsis-full-ofgm.vercel.app"];
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "https://novarsis-full-c1fe.vercel.app",
+  "https://novarsis-full-ofgm.vercel.app"
+];
 
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.log("❌ Blocked by CORS:", origin);
       callback(new Error("Not allowed by CORS"));
     }
   },
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 };
 
+// ✅ Apply CORS and preflight handler
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // ✅ Important for preflight requests
+
+// ✅ Body parsers and cookies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-// app.use(upload.none()); // ✅ This now works fine
+// app.use(upload.none()); // Optional, if needed for form-data
 
 // ==============================
 // Static File Routes
