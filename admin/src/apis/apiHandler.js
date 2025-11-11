@@ -3,7 +3,6 @@ import { signup, signin, success, failed } from '../slice/userSlice';
 import { postRequest, getRequest, deleteRequest, patchRequest } from './ApiInstence';
 import { toast } from 'react-toastify';
 import { getContactUs, successContactUs, failedContactUs, removeContactUs, getDashboardData } from '../slice/contactUsSlice';
-import { getResume, removeResume, getDashboardDataa, successResume } from '../slice/internshipSlice';
 import { getEnquire, successEnquire, failedEnquire, removeEnquire } from '../slice/enquireSlice';
 import {
   addProduct,
@@ -14,10 +13,9 @@ import {
   getOneProduct,
   searchProductByName
 } from '../slice/productSlice';
-import { getGallery, successGallery, removeGallery, addGallery, updateGallery, getOneGallery } from '../slice/gallerySlice';
+import { getGallery, successGallery, removeGallery, failedGallery , addGallery, updateGallery, getOneGallery } from '../slice/gallerySlice';
 import { getMedia, successMedia, removeMedia, addMedia, updateMedia, getOneMedia } from '../slice/mediaSlice';
 import { getBanner, successBanner, removeBanner, addBanner, updateBanner, getOneBanner } from '../slice/bannerSlice';
-
 import { getOurteam, successOurteam, removeOurteam, addOurteam, updateOurteam, getOneOurteam, failedOurteam } from 'slice/ourteamSlice';
 import {
   getCustomer,
@@ -776,7 +774,7 @@ export function* addBlogFun({ payload }) {
       toast.success('Blog added successfully!');
 
       // Optionally refresh blog list
-      yield put(getBlogs());
+      yield put(getBlog());
     } else {
       // ❌ Never send full response object
       const errorMessage = response?.data?.message || response?.message || 'Failed to add blog';
@@ -1304,55 +1302,6 @@ function* getOrderDeatilsDBFun({ payload }) {
   }
 }
 
-// Fetch resume
-function* getResumeFun({ payload }) {
-  try {
-    const response = yield getRequest('internship', payload);
-    if (response?.status == 200) {
-      yield put(successResume(response?.data));
-    } else {
-      yield put(failedResume(response?.data));
-      toast(response?.data?.message || 'Failed to fetch resume');
-    }
-  } catch (error) {
-    console.log(error);
-    toast(error.response?.data?.message || error.message);
-  }
-}
-
-// Fetch Dashboard Data
-function* getDashboardDataaFun({ payload }) {
-  try {
-    const response = yield getRequest('dashboard', payload);
-    if (response?.status == 200) {
-      yield put(successResume(response?.data));
-    } else {
-      yield put(failedResume(response?.data));
-      toast(response?.data?.message || 'Failed to fetch dashboard data');
-    }
-  } catch (error) {
-    console.log(error);
-    toast(error.response?.data?.message || error.message);
-  }
-}
-
-// Remove resume
-function* removeResumeFun({ payload }) {
-  try {
-    const deleteResponse = yield deleteRequest(`internship/${payload}`);
-    if (deleteResponse?.status >= 200 && deleteResponse?.status < 300) {
-      yield getResumeFun({ payload }); // ✅ refresh after deletion
-      toast('resume deleted successfully');
-    } else {
-      yield put(failedResume(deleteResponse?.data));
-      toast(deleteResponse?.data?.message || 'Failed to delete appointment');
-    }
-  } catch (error) {
-    console.log(error);
-    toast(error.response?.data?.message || error.message);
-  }
-}
-
 // function* removeAppointmentFun({ payload }) {
 //   try {
 //     const deleteResponse = yield deleteRequest(`appointments/${payload}`);
@@ -1390,10 +1339,7 @@ export function* watchGetUser() {
   yield takeLatest(getAdmissions, getAdmissionsFun);
   yield takeLatest(removeAdmission, removeAdmissionFun);
 
-  // resume
-  yield takeLatest(getResume.type, getResumeFun);
-  yield takeLatest(removeResume.type, removeResumeFun);
-  yield takeLatest(getDashboardDataa, getDashboardDataaFun);
+
 
   //Enquire
   yield takeLatest(getEnquire, getEnquireFun);

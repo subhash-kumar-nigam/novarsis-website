@@ -18,8 +18,10 @@ export const gallerySlice = createSlice({
     getGallery: () => {},
     getOneGallery: () => {},
     successGallery: (state, action) => {
-      console.log(state);
       state.data = action.payload;
+    },
+    failedGallery: (state, action) => {
+      state.error = action.payload; // store error message
     },
     removeGallery: () => {},
     updateGallery: () => {},
@@ -29,7 +31,15 @@ export const gallerySlice = createSlice({
   }
 });
 
-// Action creators are generated for each case reducer function
-export const { addGallery, removeGallery, updateGallery, getGallery, successGallery, getOneGallery } = gallerySlice.actions;
+// Export all actions
+export const { 
+  addGallery, 
+  removeGallery, 
+  updateGallery, 
+  getGallery, 
+  successGallery, 
+  getOneGallery, 
+  failedGallery   // ✅ export failedGallery
+} = gallerySlice.actions;
 
 export default gallerySlice.reducer;

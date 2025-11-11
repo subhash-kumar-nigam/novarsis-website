@@ -1,4 +1,4 @@
-import { patchRequest } from 'apis/ApiInstence';
+import { getRequest, patchRequest } from 'apis/ApiInstence';
 import { put } from 'redux-saga/effects';
 import { successOrderListDB, failedOrderListDB } from 'slice/orderSliceDB';
 

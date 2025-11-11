@@ -8,71 +8,69 @@ import PrivateRouter from './routers/PrivateRouter';
 
 // Dashboard & Pages
 import Home from './pages/Home';
-import Contactus from 'pages/Contactus';
-import Career from 'pages/Career';
-import Admission from 'pages/Admission';
-import Internship from 'pages/appointemnt/Internship';
-import Applyform from 'pages/Applyform';
+import Contactus from './pages/Contactus';
+import Career from './pages/Career';
+import Admission from './pages/Admission';
+
+import Applyform from './pages/Applyform';
 
 // Products
-import ProductList from 'pages/product/ProductList';
-import AddProduct from 'pages/product/AddProduct';
-import UpdateProduct from 'pages/product/UpdateProduct';
+import ProductList from './pages/product/ProductList';
+import AddProduct from './pages/product/AddProduct';
+import UpdateProduct from './pages/product/UpdateProduct';
 
 // Gallery
-import GalleryList from 'pages/gallery/List';
-import GalleryAdd from 'pages/gallery/Add';
-import GalleryUpdate from 'pages/gallery/Update';
+import GalleryList from './pages/gallery/List';
+import GalleryAdd from './pages/gallery/Add';
+import GalleryUpdate from './pages/gallery/Update';
 
 // Media
-import MediaList from 'pages/media/List';
-import MediaAdd from 'pages/media/Add';
-import MediaUpdate from 'pages/media/Update';
+import MediaList from './pages/media/List';
+import MediaAdd from './pages/media/Add';
+import MediaUpdate from './pages/media/Update';
 
 // Banner
-import BannerList from 'pages/banner/List';
-import AddBanner from 'pages/banner/Add';
-import UpdateBanner from 'pages/banner/Update';
+import BannerList from './pages/banner/List';
+import AddBanner from './pages/banner/Add';
+import UpdateBanner from './pages/banner/Update';
 
 // Our Team
-import AddOurteam from 'pages/ourteam/AddOurteam';
-import ListOurteam from 'pages/ourteam/ListOurteam';
-import UpdateOurteam from 'pages/ourteam/UpdateOurteam';
+import AddOurteam from './pages/ourteam/AddOurteam';
+import ListOurteam from './pages/ourteam/ListOurteam';
+import UpdateOurteam from './pages/ourteam/UpdateOurteam';
 
 // Users
-import UsersList from 'pages/users/UsersList';
-import AddUser from 'pages/users/AddUser';
-import UpdateUser from 'pages/users/UpdateUser';
+import UsersList from './pages/users/UsersList';
+import AddUser from './pages/users/AddUser';
+import UpdateUser from './pages/users/UpdateUser';
 
 // Customer
-import ListCustomer from 'pages/customer/ListCustomer';
-import AddCustomer from 'pages/customer/AddCustomer';
-import UpdateCustomer from 'pages/customer/UpdateCustomer';
-
-
+import ListCustomer from './pages/customer/ListCustomer';
+import AddCustomer from './pages/customer/AddCustomer';
+import UpdateCustomer from './pages/customer/UpdateCustomer';
 
 // Orders
-import CorderList from 'pages/orderList/CorderList';
+import CorderList from './pages/orderList/CorderList';
 
 // Blogs
-import AddBlog from 'pages/blog/AddBlog';
-import ListBlog from 'pages/blog/ListBlog';
-import UpdateBlog from 'pages/blog/UpdateBlog';
+import AddBlog from './pages/blog/AddBlog';
+import ListBlog from './pages/blog/ListBlog';
+import UpdateBlog from './pages/blog/UpdateBlog';
 
 // Careers
-import AddCareer from 'pages/career/AddCareer';
-import ListCareer from 'pages/career/ListCareer';
-import UpdateCareer from 'pages/career/UpdateCareer';
+import AddCareer from './pages/career/AddCareer';
+import ListCareer from './pages/career/ListCareer';
+import UpdateCareer from './pages/career/UpdateCareer';
 
 // Services
-import AddService from 'pages/service/AddService';
-import ListService from 'pages/service/ListService';
-import UpdateService from 'pages/service/UpdateService';
+import AddService from './pages/service/AddService';
+import ListService from './pages/service/ListService';
+import UpdateService from './pages/service/UpdateService';
 
 // FAQs
-import ListFAQs from 'pages/faqs/ListFAQs';
-import AddFaq from 'pages/faqs/AddFaq';
-import UpdateFaq from 'pages/faqs/UpdateFaq';
+import ListFAQs from './pages/faqs/ListFAQs';
+import AddFaq from './pages/faqs/AddFaq';
+import UpdateFaq from './pages/faqs/UpdateFaq';
 
 function App() {
   return (
@@ -89,7 +87,7 @@ function App() {
           <Route path="/apply" element={<Applyform />} />
           <Route path="/career" element={<Career />} />
           <Route path="/admission" element={<Admission />} />
-          <Route path="/internship_portal" element={<Internship />} />
+         
 
           {/* Products */}
           <Route path="/products" element={<ProductList />} />
@@ -125,8 +123,6 @@ function App() {
           <Route path="/customer" element={<ListCustomer />} />
           <Route path="/customer/add" element={<AddCustomer />} />
           <Route path="/customer/update/:id" element={<UpdateCustomer />} />
-
-        
 
           {/* Blogs */}
           <Route path="/blogs/add" element={<AddBlog />} />

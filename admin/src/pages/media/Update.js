@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneMedia, updateMedia } from 'slice/mediaSlice';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 const Update = () => {
   const { id } = useParams();
   const dispatch = useDispatch();

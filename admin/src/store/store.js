@@ -10,7 +10,6 @@ import productSlice from '../slice/productSlice';
 import userSlice from '../slice/userSlice';
 import orderSlice from '../slice/orderSlice';
 import contactUsSlice from '../slice/contactUsSlice';
-import internshipSlice from '../slice/internshipSlice';
 import gallerySlice from '../slice/gallerySlice';
 import mediaSlice from '../slice/mediaSlice';
 import enquireSlice from '../slice/enquireSlice';
@@ -50,8 +49,7 @@ const rootReducer = combineReducers({
   orderDB: orderSliceDB,
   contactus: contactUsSlice,
   applyform: applyFormSlice,
-  internship: internshipSlice,
-  banner: bannerSlice,
+   banner: bannerSlice,
   team: ourteamSlice,
   career: careerReducer,
   customer: customerSlice,
