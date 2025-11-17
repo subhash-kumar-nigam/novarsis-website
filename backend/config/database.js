@@ -1,17 +1,20 @@
 const mysql = require("mysql2");
-const dbConfig = require("./dbConfig");
+require("dotenv").config();
 
 const connection = mysql.createConnection({
-  host: dbConfig.host,
-  user: dbConfig.username,
-  password: dbConfig.password,
-  database: dbConfig.database,
-  port: dbConfig.port || 3306, // ✅ yahan add karo
+  host: process.env.DB_HOST,          // yamabiko.proxy.rlwy.net
+  user: process.env.DB_USERNAME,      // root
+  password: process.env.DB_PASSWORD,  // your password
+  database: process.env.DB_DATABASE,  // railway
+  port: 25233,                        // FIXED → Railway MySQL port
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 connection.connect(err => {
-  if (err) console.log("❌ Connection error:", err);
-  else console.log("✅ Connected to Railway MySQL database!");
+  if (err) console.log("❌ MySQL Connection Error:", err);
+  else console.log("✅ Connected to Railway MySQL!");
 });
 
-module.exports = connection; // ✅ ye bhi add karo agar export nahi kiya hai
+module.exports = connection;
