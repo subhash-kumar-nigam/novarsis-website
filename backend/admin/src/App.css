@@ -1,0 +1,139 @@
+.App {
+  text-align: center;
+}
+.sidebar {
+  color: #000 !important;
+  background: #00a3ff;
+}
+.adminlogo {
+  padding: 20px 0px !important;
+  width: 200px !important;
+}
+.admintext {
+  color: #00a3ff;
+  font-weight: 700 !important;
+}
+.previousbtn {
+  background-color: #00a3ff !important ;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+.nextbtn {
+  background-color: #00a3ff !important ;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+.filebg {
+  background-color: #00a3ff !important ;
+  color: #fff !important;
+  padding: 5px 0px 5px 5px !important;
+}
+.adminlables {
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  color: #e92709 !important;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+a.nav-link.collapsed {
+  color: #000 !important;
+}
+a.nav-link.collapse {
+  color: #000 !important;
+}
+.removebtn {
+  background-color: rgb(8, 134, 245) !important;
+  color: #fff !important;
+}
+.addbtn {
+  background: #00a3ff !important;
+  color: #fff !important;
+}
+.sidebar-divider {
+  background: #a99b9b !important;
+  color: #000 !important;
+}
+.nav-link {
+  color: #000 !important;
+}
+.mainheadig {
+  background: #00a3ff;
+  padding: 6px 0px 6px 10px;
+  margin-bottom: 10px;
+}
+.brand {
+  font-size: 28px !important;
+  font-family: Helvetica;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  color: #000;
+  padding-top: 10px !important;
+  padding-left: 5px !important;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.section {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+@media (max-width: 566px) {
+  .brand {
+    font-size: 14px !important;
+  }
+}
+
+.custom-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.custom-modal {
+  background: white;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 90%;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
