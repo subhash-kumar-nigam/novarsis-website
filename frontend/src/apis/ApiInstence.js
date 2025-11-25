@@ -40,8 +40,12 @@ import axios from "./axiosConfig";
 //   return Promise.reject(error);
 // });
 
+// export function getRequest(URL, headers = null) {
+//   return axios.get(`/${URL}`, headers).then(response => response);
+// }
+
 export function getRequest(URL, headers = null) {
-  return axios.get(`/${URL}`, headers).then(response => response);
+  return axios.get(`${URL}`, headers).then(response => response);
 }
 
 export function postRequest(URL, payload, headers = null) {
