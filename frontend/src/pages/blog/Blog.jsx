@@ -28,7 +28,7 @@ const Blog = () => {
             {/* Decorative circles (optional for right side design like image) */}
             <div className="absolute right-6 top-1/2 transform -translate-y-1/2 hidden md:block">
               <div className="w-16 h-16 border-4 border-blue-500 rounded-full flex items-center justify-center">
-                <div className="w-10 h-10 bg-white rounded-full"></div>
+                <div className="w-10 h-12 bg-white rounded-full"></div>
               </div>
             </div>
           </section>
