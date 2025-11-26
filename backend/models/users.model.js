@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/connection'); // ensure correct path to your connection file
+const sequelize = require('../config/database'); // ensure correct path to your connection file
 
 const Users = sequelize.define('users', {
   name: {
