@@ -51,7 +51,7 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
   "https://novarsis-website.vercel.app",
-   "https://novarsis-full-ofgm.vercel.app",
+   "https://novarsis-website-7i3f.vercel.app",
 ];
 
 app.use(cors({
