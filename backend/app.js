@@ -50,8 +50,8 @@ const logger = log4js.getLogger("app");
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
-  "https://novarsis-full-c1fe.vercel.app",
-  "https://novarsis-full-ofgm.vercel.app",
+  "https://novarsis-website.vercel.app",
+   "https://novarsis-full-ofgm.vercel.app",
 ];
 
 app.use(cors({
