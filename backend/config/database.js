@@ -12,6 +12,10 @@ const sequelize = new Sequelize(
     logging: false,
     dialectOptions: {
       connectTimeout: 60000,
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
     },
   }
 );
