@@ -53,6 +53,7 @@ const allowedOrigins = [
   "https://novarsis-website.vercel.app",
    "https://novarsis-website-7i3f.vercel.app",
    "https://novarsis-website-full.onrender.com",
+  "https://novarsistech.com",
 ];
 
 app.use(cors({
